@@ -31,5 +31,12 @@ public class MessageQueueTest {
 		this.messages.add(this.mockedMessage);
 		assertEquals(mockedMessage, messages.remove());
 	}
+	
+	@Test
+	public void deberiaRetornarMensajeQueSeElimina() {
+		this.messages.add(this.mockedMessage);
+		this.messages.add(this.mockedMessage);
+		assertEquals(this.mockedMessage, this.messages.remove());
+	}
 
 }

@@ -38,5 +38,11 @@ public class MessageQueueTest {
 		this.messages.add(this.mockedMessage);
 		assertEquals(this.mockedMessage, this.messages.remove());
 	}
+	
+	@Test
+	public void deberiaGuardarUnNuevoMensajeConAdd() {
+		this.messages.add(this.mockedMessage);
+		assertEquals(this.mockedMessage, this.messages.peek());
+	}
 
 }

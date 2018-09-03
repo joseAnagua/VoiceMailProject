@@ -45,4 +45,9 @@ public class MessageQueueTest {
 		assertEquals(this.mockedMessage, this.messages.peek());
 	}
 
+	@Test
+	public void deberiaRetornarVacioConPeek() {
+		assertNull(this.messages.peek());
+	}
+	
 }

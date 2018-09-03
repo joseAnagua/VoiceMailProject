@@ -24,5 +24,12 @@ public class MessageQueueTest {
 	public void deberiaRetornar0ConSize() {
 		assertEquals(0, messages.size());
 	}
+	
+	@Test
+	public void deberiaRetornarNumeroConSize() {
+		this.messages.add(this.mockedMessage);
+		this.messages.add(this.mockedMessage);
+		assertEquals(mockedMessage, messages.remove());
+	}
 
 }

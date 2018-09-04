@@ -29,5 +29,11 @@ public class MailboxTest {
 	public void deberiaDevolverPasscodeTrue() {
 		assertTrue(this.mailbox.checkPasscode("1"));
 	}
+	
+	@Test 
+	public void deberiaDevolverPasscodeFalse() {
+		assertFalse(this.mailbox.checkPasscode("2"));
+		
+	}
 
 }

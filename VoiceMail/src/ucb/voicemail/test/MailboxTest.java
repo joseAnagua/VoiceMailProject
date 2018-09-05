@@ -21,6 +21,7 @@ public class MailboxTest {
 		this.passcode = "1";
 		this.greeting = "Saludos";
 		this.mailbox = new Mailbox(this.passcode, this.greeting);
+		
 		this.mockedMessage = mock(Message.class);
 		this.mockedMessageQueue = mock(MessageQueue.class);
 	}
@@ -48,4 +49,9 @@ public class MailboxTest {
 		when(this.mockedMessageQueue.size()).thenReturn(cantidadDeMensajes);
 	}
 	
+	@Test
+	public void deberiaRetornarMensajeActual() {
+		this.mailbox.addMessage(this.mockedMessage);
+		assertEquals(this.mockedMessage, this.mailbox.getCurrentMessage());
+	}
 }

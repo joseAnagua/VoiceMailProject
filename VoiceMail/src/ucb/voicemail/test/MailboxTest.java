@@ -79,8 +79,15 @@ public class MailboxTest {
 	}
 	
 	@Test
-	public void deberiaRetornarNullAlEliminarMensajesPorVacion() {
+	public void deberiaRetornarNullAlEliminarMensajesPorVacio() {
 		assertEquals(null, this.mailbox.removeCurrentMessage());
 	}
 	
+	@Test
+	public void deberiaGuardarMensajeActual() {
+		this.mailbox.addMessage(this.mockedMessage);
+		assertEquals(this.mockedMessage, this.mailbox.getCurrentMessage());
+		this.mailbox.saveCurrentMessage();
+		assertEquals(this.mockedMessage, this.mailbox.getCurrentMessage());
+	}
 }

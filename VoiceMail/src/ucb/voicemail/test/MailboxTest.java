@@ -61,9 +61,13 @@ public class MailboxTest {
 	}
 	
 	@Test
-	public void deberiaRemoverCurrentMessages() {
-		this.mailbox.addMessage(this.mockedMessage);
-		this.mailbox.addMessage(this.mockedMessage);
-		assertEquals(this.mockedMessage, this.mailbox.removeCurrentMessage());
+	public void deberiaEliminarMensajeActual() {
+		 
+		Message mensajeUno = new Message("Hola");
+		Message mensajeDos = new Message("Saludo");
+		this.mailbox.addMessage(mensajeUno);
+		this.mailbox.addMessage(mensajeDos);
+		
+		assertEquals(mensajeUno, this.mailbox.removeCurrentMessage());
 	}
 }

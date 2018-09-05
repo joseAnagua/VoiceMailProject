@@ -70,4 +70,11 @@ public class MailboxTest {
 		
 		assertEquals(mensajeUno, this.mailbox.removeCurrentMessage());
 	}
+	
+	@Test
+	public void deberiaEleminarMensajeGuardado() {
+		this.mailbox.addMessage(this.mockedMessage);
+		this.mailbox.saveCurrentMessage();
+		assertEquals(this.mockedMessage, this.mailbox.removeCurrentMessage());
+	}
 }

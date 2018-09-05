@@ -35,5 +35,17 @@ public class MailboxTest {
 		assertFalse(this.mailbox.checkPasscode("2"));
 		
 	}
-
+	
+	@Test
+	public void deberiaRetornarMensaje() {
+		this.mailbox.addMessage(this.mockedMessage);
+		
+	}
+	
+	@Test
+	public void deberiaRetornarCantidadDeMensajes() {
+		int cantidadDeMensajes = 2;
+		when(this.mockedMessageQueue.size()).thenReturn(cantidadDeMensajes);
+	}
+	
 }

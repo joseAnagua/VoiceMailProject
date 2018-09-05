@@ -58,6 +58,12 @@ public class MailboxTest {
 	@Test
 	public void deberiaRetornarNullSinMensajes() {
 		assertEquals(null, this.mailbox.getCurrentMessage());
-		
+	}
+	
+	@Test
+	public void deberiaRemoverCurrentMessages() {
+		this.mailbox.addMessage(this.mockedMessage);
+		this.mailbox.addMessage(this.mockedMessage);
+		assertEquals(this.mockedMessage, this.mailbox.removeCurrentMessage());
 	}
 }

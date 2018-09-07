@@ -90,9 +90,17 @@ public class MailboxTest {
 		this.mailbox.saveCurrentMessage();
 		assertEquals(this.mockedMessage, this.mailbox.getCurrentMessage());
 	}
+	
 	@Test
 	public void deberiaNoGuardarMensajeActual() {
 		this.mailbox.saveCurrentMessage();
 		assertNotEquals(this.mockedMessage,this.mailbox.getCurrentMessage());
+	}
+	
+	@Test
+	public void deberuaCambiarSaludo() {
+		String newGreeting = "Bienvenido";
+		this.mailbox.setGreeting(newGreeting);
+		assertEquals(newGreeting,this.mailbox.getGreeting());
 	}
 }

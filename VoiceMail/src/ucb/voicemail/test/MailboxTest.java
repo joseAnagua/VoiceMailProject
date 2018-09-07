@@ -103,4 +103,10 @@ public class MailboxTest {
 		this.mailbox.setGreeting(newGreeting);
 		assertEquals(newGreeting,this.mailbox.getGreeting());
 	}
+	@Test
+	public void deberiaCamabiarPasscode() {
+		String newPasscode = "3";
+		this.mailbox.setPasscode(newPasscode);
+		assertTrue(this.mailbox.checkPasscode(newPasscode));
+	}
 }

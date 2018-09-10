@@ -21,4 +21,14 @@ public class MailSystemTest {
 	public void deberiaHaberCreadoMailboxes() {
 		assertEquals(10, this.mailSystem.getLengthMailbox());
 	}
+	
+	@Test
+	public void deberiaDevolverNullPorMailboxInvalido() {
+		assertEquals(null, this.mailSystem.findMailbox("23"));
+	}
+	
 }
+
+
+
+

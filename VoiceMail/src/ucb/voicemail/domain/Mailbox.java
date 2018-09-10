@@ -100,7 +100,7 @@ public class Mailbox
    {
       return greeting;
    }
-
+   
    private MessageQueue newMessages;
    private MessageQueue keptMessages;
    private String greeting;

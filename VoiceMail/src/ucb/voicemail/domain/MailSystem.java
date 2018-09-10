@@ -38,5 +38,9 @@ public class MailSystem
       else return null;
    }
 
+   public int getLengthMailbox(){
+	   return mailboxes.size();
+   }
+   
    private ArrayList<Mailbox> mailboxes;
 }

@@ -46,6 +46,11 @@ public class MailSystemTest {
 	public void deberiaDevolverIgualGrettindDelMailbox() {
 		assertEquals("You have reached mailbox 8. \nPlease leave a message now.", this.mailSystem.findMailbox("8").getGreeting());
 	}
+	
+	@Test
+	public void deberiaDevolverNoIgualElGrettingDelMailbox() {
+		assertNotEquals("You have reached mailbox 9. \nPlease leave a message now.", this.mailSystem.findMailbox("8").getGreeting());
+	}		
 }
 
 

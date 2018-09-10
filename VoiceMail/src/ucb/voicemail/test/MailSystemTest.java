@@ -41,6 +41,11 @@ public class MailSystemTest {
 	public void deberiaDevolverPasscodeDeMailboxFalse() {
 		assertFalse(this.mailSystem.findMailbox("8").checkPasscode("9"));
 	}
+	
+	@Test
+	public void deberiaDevolverIgualGrettindDelMailbox() {
+		assertEquals("You have reached mailbox 8. \nPlease leave a message now.", this.mailSystem.findMailbox("8").getGreeting());
+	}
 }
 
 

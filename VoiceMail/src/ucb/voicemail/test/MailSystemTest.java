@@ -32,6 +32,10 @@ public class MailSystemTest {
 		assertEquals(null, this.mailSystem.findMailbox("8"));
 	}
 	
+	@Test
+	public void deberiaDevolverPasscodeDeMailboxTrue() {
+		assertTrue(this.mailSystem.findMailbox("8").checkPasscode("8"));
+	}
 }
 
 

@@ -36,6 +36,11 @@ public class MailSystemTest {
 	public void deberiaDevolverPasscodeDeMailboxTrue() {
 		assertTrue(this.mailSystem.findMailbox("8").checkPasscode("8"));
 	}
+	
+	@Test 
+	public void deberiaDevolverPasscodeDeMailboxFalse() {
+		assertFalse(this.mailSystem.findMailbox("8").checkPasscode("9"));
+	}
 }
 
 

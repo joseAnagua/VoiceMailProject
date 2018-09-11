@@ -24,6 +24,11 @@ public class Telephone
    {
       System.out.println(output);
    }
+   
+   public void updateInterface(String output)
+   {
+      System.out.println(output);
+   }
 
    /**
       Loops reading user input and passes the input to the

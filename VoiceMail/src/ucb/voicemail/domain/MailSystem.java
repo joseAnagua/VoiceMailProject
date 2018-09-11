@@ -30,6 +30,7 @@ public class MailSystem
       @param ext the extension number
       @return the mailbox or null if not found
    */
+   /*Busca el mailbox dentro del array*/
    public Mailbox findMailbox(String ext)
    {
       int i = Integer.parseInt(ext);

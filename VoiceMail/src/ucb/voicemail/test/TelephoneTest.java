@@ -12,8 +12,7 @@ import java.util.Scanner;
 
 import org.junit.Test;
 
-import com.sun.corba.se.pept.transport.Connection;
-
+import ucb.voicemail.domain.Connection;
 import ucb.voicemail.domain.Telephone;
 
 public class TelephoneTest {
@@ -26,22 +25,24 @@ public class TelephoneTest {
 		this.telephone = new Telephone(new Scanner(System.in));
 		PrintStream out = mock(PrintStream.class);
 		System.setOut(out);
-		this.telephone.updateInterface("TestRunning");
+		this.telephone.updateInterface("TestRuning");
 		verify(out).println("TestRuning");
 	}
 
-	/*@Test
+	@Test
 	public void deberiaDarElValorDeFalseAMore() {
 		String input = "Q";
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		
 		this.telephone = new Telephone(new Scanner(System.in));
-		this.connection = mock(Connection.class);
+		connection = mock(Connection.class);
+		
 		this.telephone.run(connection);
-	}*/
+	}
 	
-	/*public void deberiaEjecutarElMetodoDialDeConnection() {		
+	@Test
+	public void deberiaEjecutarElMetodoDialDeConnection() {		
 		String input = "1";
 	    InputStream in = new ByteArrayInputStream(input.getBytes());
 	    System.setIn(in);
@@ -51,5 +52,5 @@ public class TelephoneTest {
 		connection = mock(Connection.class);
 		
 		doNothing().when(connection).dial(isA(String.class));
-	}*/
+	}
 }

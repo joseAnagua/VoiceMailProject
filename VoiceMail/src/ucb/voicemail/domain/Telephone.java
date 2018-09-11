@@ -53,7 +53,6 @@ public class Telephone
          else
             c.record(input);
       }
-   }
-
-   private Scanner scanner;
+  }
+private Scanner scanner;
 }

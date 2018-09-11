@@ -19,7 +19,7 @@ public class MailSystem
       for (int i = 0; i < mailboxCount; i++)
       {
          String passcode = "" + (i + 1);
-         String greeting = "You have reached mailbox " + (i + 1)
+         String greeting = "You have reached mailbox " +"["+ (i + 1)+"]"
                + ". \nPlease leave a message now.";
          mailboxes.add(new Mailbox(passcode, greeting));
       }

@@ -216,11 +216,13 @@ public class Connection
    private static final int CHANGE_GREETING = 6;
 
    private static final String INITIAL_PROMPT = 
-         "Enter mailbox number followed by #";      
+         "Enter mailbox number followed by #";  
+   
    private static final String MAILBOX_MENU_TEXT = 
          "Enter 1 to listen to your messages\n"
          + "Enter 2 to change your passcode\n"
          + "Enter 3 to change your greeting";
+   
    private static final String MESSAGE_MENU_TEXT = 
          "Enter 1 to listen to the current message\n"
          + "Enter 2 to save the current message\n"

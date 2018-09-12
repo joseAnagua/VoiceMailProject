@@ -29,7 +29,7 @@ public class MailSystemTest {
 	
 	@Test
 	public void deberiaDevolverDiferenteDeNullPorMailboxValido() {
-		assertEquals(null, this.mailSystem.findMailbox("8"));
+		assertNotEquals(null, this.mailSystem.findMailbox("8"));
 	}
 	
 	@Test
@@ -44,12 +44,12 @@ public class MailSystemTest {
 	
 	@Test
 	public void deberiaDevolverIgualGrettindDelMailbox() {
-		assertEquals("You have reached mailbox 8. \nPlease leave a message now.", this.mailSystem.findMailbox("8").getGreeting());
+		assertEquals("You have reached mailbox [8]. \nPlease leave a message now.", this.mailSystem.findMailbox("8").getGreeting());
 	}
 	
 	@Test
 	public void deberiaDevolverNoIgualElGrettingDelMailbox() {
-		assertNotEquals("You have reached mailbox 9. \nPlease leave a message now.", this.mailSystem.findMailbox("8").getGreeting());
+		assertNotEquals("You have reached mailbox [9]. \nPlease leave a message now.", this.mailSystem.findMailbox("8").getGreeting());
 	}		
 }
 

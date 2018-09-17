@@ -24,6 +24,11 @@ public class Telephone
    {
       System.out.println(output);
    }
+   
+   public void updateInterface(String output)
+   {
+      System.out.println(output);
+   }
 
    /**
       Loops reading user input and passes the input to the
@@ -48,7 +53,6 @@ public class Telephone
          else
             c.record(input);
       }
-   }
-
-   private Scanner scanner;
+  }
+private Scanner scanner;
 }

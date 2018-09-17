@@ -19,7 +19,7 @@ public class MailSystem
       for (int i = 0; i < mailboxCount; i++)
       {
          String passcode = "" + (i + 1);
-         String greeting = "You have reached mailbox " + (i + 1)
+         String greeting = "You have reached mailbox " +"["+ (i + 1)+"]"
                + ". \nPlease leave a message now.";
          mailboxes.add(new Mailbox(passcode, greeting));
       }
@@ -30,6 +30,7 @@ public class MailSystem
       @param ext the extension number
       @return the mailbox or null if not found
    */
+   /*Busca el mailbox dentro del array*/
    public Mailbox findMailbox(String ext)
    {
       int i = Integer.parseInt(ext);

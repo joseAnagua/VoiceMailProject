@@ -29,11 +29,7 @@ public class MailSystemTest {
 	
 	@Test
 	public void deberiaDevolverDiferenteDeNullPorMailboxValido() {
-<<<<<<< HEAD
 		assertNotNull(mailSystem.findMailbox("8"));
-=======
-		assertNotEquals(null, this.mailSystem.findMailbox("8"));
->>>>>>> connection_test
 	}
 	
 	@Test

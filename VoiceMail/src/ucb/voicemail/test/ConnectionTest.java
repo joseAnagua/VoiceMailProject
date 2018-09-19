@@ -16,6 +16,12 @@ public class ConnectionTest {
 	@Before
 	public void init(){
 		this.mailsystem = mock(MailSystem.class);
-		this.connection =new Connection(this.mailsystem);
+		this.connection = new Connection(this.mailsystem);
 	}
+	
+	@Test
+	public void deberiaLlamarAlMetodoConnect() {
+		this.connection.dial("key to test");
+	}
+	
 }

@@ -69,7 +69,7 @@ public class Connection implements Subject
       currentRecording = "";
       accumulatedKeys = "";
       state = CONNECTED;
-      phone.speak(INITIAL_PROMPT);
+      notify(INITIAL_PROMPT);
    }
 
    /**

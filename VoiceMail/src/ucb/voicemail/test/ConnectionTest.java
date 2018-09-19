@@ -29,5 +29,9 @@ public class ConnectionTest {
 		this.connection.record("texto");
 	}
 	
+	@Test
+	public void noDeberiaAgregarMensajeACurrentMailbox() {
+		this.connection.hangup();
+	}
 	
 }

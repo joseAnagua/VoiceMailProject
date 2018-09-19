@@ -1,4 +1,4 @@
-package ucb.voicemail.diagram;
+package ucb.voicemail.domain;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -13,7 +13,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 
-public class MainMenu extends JFrame {
+public class Main extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -25,7 +25,7 @@ public class MainMenu extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainMenu frame = new MainMenu();
+					Main frame = new Main();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,7 +37,7 @@ public class MainMenu extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MainMenu() {
+	public Main() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 625, 349);
 		contentPane = new JPanel();
@@ -125,3 +125,4 @@ public class MainMenu extends JFrame {
 		textField.setColumns(10);
 	}
 }
+

@@ -24,4 +24,10 @@ public class ConnectionTest {
 		this.connection.dial("key to test");
 	}
 	
+	@Test
+	public void deberiaConcatenarElTextoACurrentRecording() {
+		this.connection.record("texto");
+	}
+	
+	
 }

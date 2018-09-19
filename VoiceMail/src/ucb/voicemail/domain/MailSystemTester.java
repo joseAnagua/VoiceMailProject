@@ -12,7 +12,8 @@ public class MailSystemTester
       MailSystem system = new MailSystem(MAILBOX_COUNT);
       Scanner console = new Scanner(System.in);
       Telephone p = new Telephone(console);
-      Connection c = new Connection(system, p);
+      Connection c = new Connection(system);
+      c.addUserInterface(p);
       p.run(c);
    }
 

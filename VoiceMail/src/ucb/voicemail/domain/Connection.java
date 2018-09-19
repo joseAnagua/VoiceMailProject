@@ -13,7 +13,7 @@ public class Connection implements Subject
       @param s a MailSystem object
       @param p a Telephone object
    */
-   public Connection(MailSystem s, Telephone p)
+   public Connection(MailSystem s)
    {
       system = s;
       this.userInterfaces = new ArrayList<UserInterface>();
@@ -69,7 +69,7 @@ public class Connection implements Subject
       currentRecording = "";
       accumulatedKeys = "";
       state = CONNECTED;
-      phone.speak(INITIAL_PROMPT);
+      notify(INITIAL_PROMPT);
    }
 
    /**

@@ -1,10 +1,12 @@
 package ucb.voicemail.domain;
+import java.util.ArrayList;
+
 /**
    Connects a phone to the mail system. The purpose of this
    class is to keep track of the state of a connection, since
    the phone itself is just a source of individual key presses.
 */
-public class Connection
+public class Connection implements Subject
 {
    /**
       Construct a Connection object.
@@ -14,7 +16,7 @@ public class Connection
    public Connection(MailSystem s, Telephone p)
    {
       system = s;
-      phone = p;
+      this.userInterfaces = new ArrayList<UserInterface>();
       resetConnection();
    }
 
@@ -200,12 +202,36 @@ public class Connection
       }
    }
 
+   //===================================================================
+   @Override 
+   public void addUserInterface(UserInterface userInterface) {
+	   this.userInterfaces.add(userInterface);
+   }
+   
+   @Override
+   public void deleteUserInterface(UserInterface userInterface) {
+	   this.userInterfaces.remove(userInterface);
+   }
+   
+   @Override
+   public void notify(String output) {
+	   for(UserInterface userInterface : this.userInterfaces) {
+		   userInterface.updateInterface(output);
+	   }
+   }
+   //===================================================================
+   
+   public void start() {
+	   this.resetConnection();
+   }
+   
    private MailSystem system;
    private Mailbox currentMailbox;
    private String currentRecording;
    private String accumulatedKeys;
    private Telephone phone;
    private int state;
+   private ArrayList<UserInterface> userInterfaces;
 
    private static final int DISCONNECTED = 0;
    private static final int CONNECTED = 1;

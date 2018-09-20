@@ -24,12 +24,12 @@ public class Telephone implements UserInterface
    {
       System.out.println(output);
    }
-   
+   //==============================================
    public void updateInterface(String output)
    {
       System.out.println(output);
    }
-
+   //==============================================
    /**
       Loops reading user input and passes the input to the
       Connection object's methods dial, record or hangup.
@@ -54,5 +54,6 @@ public class Telephone implements UserInterface
             c.record(input);
       }
   }
-private Scanner scanner;
+
+   	private Scanner scanner;
 }

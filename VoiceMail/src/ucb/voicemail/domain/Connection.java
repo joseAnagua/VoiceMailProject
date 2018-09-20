@@ -69,7 +69,7 @@ public class Connection implements Subject
       currentRecording = "";
       accumulatedKeys = "";
       state = CONNECTED;
-      notify(INITIAL_PROMPT);
+      notifyObserver(INITIAL_PROMPT);
    }
 
    /**
@@ -202,7 +202,9 @@ public class Connection implements Subject
       }
    }
 
-   //===================================================================
+   /*===================================================================
+     Metodos [add - delete - notifyObserver]
+     ===================================================================*/
    @Override 
    public void addUserInterface(UserInterface userInterface) {
 	   this.userInterfaces.add(userInterface);
@@ -214,16 +216,18 @@ public class Connection implements Subject
    }
    
    @Override
-   public void notify(String output) {
+   public void notifyObserver(String output) {
 	   for(UserInterface userInterface : this.userInterfaces) {
 		   userInterface.updateInterface(output);
 	   }
    }
-   //===================================================================
    
    public void start() {
 	   this.resetConnection();
-   }
+   }  
+   //===================================================================
+   
+   
    
    private MailSystem system;
    private Mailbox currentMailbox;

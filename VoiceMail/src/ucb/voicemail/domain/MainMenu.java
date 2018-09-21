@@ -19,8 +19,8 @@ import javax.swing.JLabel;
 
 public class MainMenu extends JFrame {
 
-	private JPanel contentPane;
-	private JTextField textField;
+	private JPanel boardMain;
+	private JTextField textInput;
 	private JLabel lblOutput;
 	private Connection connection;
 
@@ -46,10 +46,10 @@ public class MainMenu extends JFrame {
 	public MainMenu() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 625, 349);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		boardMain = new JPanel();
+		boardMain.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(boardMain);
+		boardMain.setLayout(null);
 		
 		JButton btnUno = new JButton("1");
 		btnUno.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
@@ -58,81 +58,88 @@ public class MainMenu extends JFrame {
 			}
 		});
 		btnUno.setBounds(41, 62, 58, 49);
-		contentPane.add(btnUno);
+		boardMain.add(btnUno);
 		
 		JButton btnDos = new JButton("2");
 		btnDos.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
 		btnDos.setBounds(111, 62, 58, 49);
-		contentPane.add(btnDos);
+		boardMain.add(btnDos);
 		
 		JButton btnTres = new JButton("3");
 		btnTres.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
 		btnTres.setBounds(181, 62, 58, 49);
-		contentPane.add(btnTres);
+		boardMain.add(btnTres);
 		
 		JButton btnCuatro = new JButton("4");
 		btnCuatro.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
 		btnCuatro.setBounds(41, 123, 58, 49);
-		contentPane.add(btnCuatro);
+		boardMain.add(btnCuatro);
 		
 		JButton btnCinco = new JButton("5");
 		btnCinco.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
 		btnCinco.setBounds(111, 123, 58, 49);
-		contentPane.add(btnCinco);
+		boardMain.add(btnCinco);
 		
 		JButton btnSeis = new JButton("6");
 		btnSeis.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
 		btnSeis.setBounds(181, 123, 58, 49);
-		contentPane.add(btnSeis);
+		boardMain.add(btnSeis);
 		
 		JButton btnSiete = new JButton("7");
 		btnSiete.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
 		btnSiete.setBounds(41, 181, 58, 49);
-		contentPane.add(btnSiete);
+		boardMain.add(btnSiete);
 		
 		JButton btnOcho = new JButton("8");
 		btnOcho.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
 		btnOcho.setBounds(111, 181, 58, 49);
-		contentPane.add(btnOcho);
+		boardMain.add(btnOcho);
 		
 		JButton btnNueve = new JButton("9");
 		btnNueve.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
 		btnNueve.setBounds(181, 181, 58, 49);
-		contentPane.add(btnNueve);
+		boardMain.add(btnNueve);
 		
 		JButton btnCero = new JButton("0");
 		btnCero.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
 		btnCero.setBounds(41, 242, 95, 49);
-		contentPane.add(btnCero);
+		boardMain.add(btnCero);
 		
 		JButton btnNumeral = new JButton("#");
 		btnNumeral.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
 		btnNumeral.setBounds(144, 242, 95, 49);
-		contentPane.add(btnNumeral);
+		boardMain.add(btnNumeral);
 		
 		JButton btnH = new JButton("H");
 		btnH.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
 		btnH.setBounds(290, 242, 159, 49);
-		contentPane.add(btnH);
+		boardMain.add(btnH);
 		
 		JButton btnQ = new JButton("Q");
+		btnQ.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		btnQ.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
 		btnQ.setBounds(469, 242, 150, 49);
-		contentPane.add(btnQ);
+		boardMain.add(btnQ);
 		
 		JButton btnEnter = new JButton("Enter");
 		btnEnter.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
 		btnEnter.setBounds(300, 181, 319, 49);
-		contentPane.add(btnEnter);
+		boardMain.add(btnEnter);
 		
-		textField = new JTextField();
-		textField.setBounds(290, 53, 329, 119);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		textInput = new JTextField();
+		textInput.setBounds(290, 53, 329, 119);
+		boardMain.add(textInput);
+		textInput.setColumns(10);
 		
 		JLabel lblOutput = new JLabel("Mensajes");
 		lblOutput.setBounds(41, 19, 192, 31);
-		contentPane.add(lblOutput);
+		boardMain.add(lblOutput);
+		
+	
 	}
 	
 	public void changeMainLabel(String output) {

@@ -84,10 +84,12 @@ public class Connection implements Subject
          if (currentMailbox != null)
          {
             state = RECORDING;
-            phone.speak(currentMailbox.getGreeting());
+            //phone.speak(currentMailbox.getGreeting());
+            this.notifyObserver(this.currentMailbox.getGreeting());
          }
          else
-            phone.speak("Incorrect mailbox number. Try again!");
+            //phone.speak("Incorrect mailbox number. Try again!");
+        	 this.notifyObserver("Incorrect mailbox number. Try again!");
          accumulatedKeys = "";
       }
       else
@@ -105,10 +107,12 @@ public class Connection implements Subject
          if (currentMailbox.checkPasscode(accumulatedKeys))
          {
             state = MAILBOX_MENU;
-            phone.speak(MAILBOX_MENU_TEXT);
+            //phone.speak(MAILBOX_MENU_TEXT);
+            this.notifyObserver(MAILBOX_MENU_TEXT);
          }
          else
-            phone.speak("Incorrect passcode. Try again!");
+            //phone.speak("Incorrect passcode. Try again!");
+        	 this.notifyObserver("Incorrect mailbox number. Try again!");
          accumulatedKeys = "";
       }
       else
@@ -125,7 +129,8 @@ public class Connection implements Subject
       {
          currentMailbox.setPasscode(accumulatedKeys);
          state = MAILBOX_MENU;
-         phone.speak(MAILBOX_MENU_TEXT);
+         //phone.speak(MAILBOX_MENU_TEXT);
+         this.notifyObserver(MAILBOX_MENU_TEXT);
          accumulatedKeys = "";
       }
       else
@@ -143,7 +148,8 @@ public class Connection implements Subject
          currentMailbox.setGreeting(currentRecording);
          currentRecording = "";
          state = MAILBOX_MENU;
-         phone.speak(MAILBOX_MENU_TEXT);
+         //phone.speak(MAILBOX_MENU_TEXT);
+         this.notifyObserver(MAILBOX_MENU_TEXT);
       }
    }
 
@@ -156,17 +162,20 @@ public class Connection implements Subject
       if (key.equals("1"))
       {
          state = MESSAGE_MENU;
-         phone.speak(MESSAGE_MENU_TEXT);
+         //phone.speak(MESSAGE_MENU_TEXT);
+         this.notifyObserver(MESSAGE_MENU_TEXT);
       }
       else if (key.equals("2"))
       {
          state = CHANGE_PASSCODE;
-         phone.speak("Enter new passcode followed by the # key");
+         //phone.speak("Enter new passcode followed by the # key");
+         this.notifyObserver("Enter new passcode followed by the # key");
       }
       else if (key.equals("3"))
       {
          state = CHANGE_GREETING;
-         phone.speak("Record your greeting, then press the # key");
+         //phone.speak("Record your greeting, then press the # key");
+         this.notifyObserver("Record your greeting, then press the # key");
       }
    }
 
@@ -183,22 +192,26 @@ public class Connection implements Subject
          if (m == null) output += "No messages." + "\n";
          else output += m.getText() + "\n";
          output += MESSAGE_MENU_TEXT;
-         phone.speak(output);
+         //phone.speak(output);
+         this.notifyObserver(output);
       }
       else if (key.equals("2"))
       {
          currentMailbox.saveCurrentMessage();
-         phone.speak(MESSAGE_MENU_TEXT);
+         //phone.speak(MESSAGE_MENU_TEXT);
+         this.notifyObserver(MESSAGE_MENU_TEXT);
       }
       else if (key.equals("3"))
       {
          currentMailbox.removeCurrentMessage();
-         phone.speak(MESSAGE_MENU_TEXT);
+         //phone.speak(MESSAGE_MENU_TEXT);
+         this.notifyObserver(MESSAGE_MENU_TEXT);
       }
       else if (key.equals("4"))
       {
          state = MAILBOX_MENU;
-         phone.speak(MAILBOX_MENU_TEXT);
+         //phone.speak(MAILBOX_MENU_TEXT);
+         this.notifyObserver(MAILBOX_MENU_TEXT);
       }
    }
 

@@ -2,8 +2,6 @@ package ucb.voicemail.domain;
 
 public class Window implements UserInterface{
 
-	private MainMenu mainMenu;
-
 	public Window(MainMenu mainMenu){
 		this.mainMenu = mainMenu;
 		mainMenu.show();
@@ -19,5 +17,7 @@ public class Window implements UserInterface{
 		this.mainMenu.show();
 		
 	} 
-
+	
+	private MainMenu mainMenu;
+	private Connection connection;
 }

@@ -1,35 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.2" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <interface id="1" language="java" name="ucb.voicemail.domain.Subject" project="VoiceMail" 
-    file="/VoiceMail/src/ucb/voicemail/domain/Subject.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="204" y="318"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <class id="2" language="java" name="ucb.voicemail.domain.Connection" project="VoiceMail" 
-    file="/VoiceMail/src/ucb/voicemail/domain/Connection.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="207" y="761"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="3" language="java" name="ucb.voicemail.domain.Telephone" project="VoiceMail" 
+  <interface id="1" language="java" name="ucb.voicemail.domain.Telephone" project="VoiceMail" 
     file="/VoiceMail/src/ucb/voicemail/domain/Telephone.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="759" y="759"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <interface id="4" language="java" name="ucb.voicemail.domain.UserInterface" project="VoiceMail" 
-    file="/VoiceMail/src/ucb/voicemail/domain/UserInterface.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="760" y="294"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -37,31 +10,6 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <association id="5">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="6" name="phone"/>      
-      <multiplicity id="7" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="8">    
-    <bendpoint x="493" y="295"/>    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="9" name="userInterfaces"/>      
-      <multiplicity id="10" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="11">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <realization id="12">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="1"/>  
-  </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

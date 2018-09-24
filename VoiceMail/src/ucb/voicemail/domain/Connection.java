@@ -16,7 +16,7 @@ public class Connection implements Subject
    public Connection(MailSystem s)
    {
       system = s;
-      this.userInterfaces = new ArrayList<UserInterface>();
+      this.telephones = new ArrayList<Telephone>();
       resetConnection();
    }
 
@@ -69,7 +69,7 @@ public class Connection implements Subject
       currentRecording = "";
       accumulatedKeys = "";
       state = CONNECTED;
-      notifyObserver(INITIAL_PROMPT);
+      notifyToAll(INITIAL_PROMPT);
    }
 
    /**
@@ -85,11 +85,11 @@ public class Connection implements Subject
          {
             state = RECORDING;
             //phone.speak(currentMailbox.getGreeting());
-            this.notifyObserver(this.currentMailbox.getGreeting());
+            this.notifyToAll(this.currentMailbox.getGreeting());
          }
          else
             //phone.speak("Incorrect mailbox number. Try again!");
-        	 this.notifyObserver("Incorrect mailbox number. Try again!");
+        	 this.notifyToAll("Incorrect mailbox number. Try again!");
          accumulatedKeys = "";
       }
       else
@@ -108,11 +108,11 @@ public class Connection implements Subject
          {
             state = MAILBOX_MENU;
             //phone.speak(MAILBOX_MENU_TEXT);
-            this.notifyObserver(MAILBOX_MENU_TEXT);
+            this.notifyToAll(MAILBOX_MENU_TEXT);
          }
          else
             //phone.speak("Incorrect passcode. Try again!");
-        	 this.notifyObserver("Incorrect mailbox number. Try again!");
+        	 this.notifyToAll("Incorrect mailbox number. Try again!");
          accumulatedKeys = "";
       }
       else
@@ -130,7 +130,7 @@ public class Connection implements Subject
          currentMailbox.setPasscode(accumulatedKeys);
          state = MAILBOX_MENU;
          //phone.speak(MAILBOX_MENU_TEXT);
-         this.notifyObserver(MAILBOX_MENU_TEXT);
+         this.notifyToAll(MAILBOX_MENU_TEXT);
          accumulatedKeys = "";
       }
       else
@@ -149,7 +149,7 @@ public class Connection implements Subject
          currentRecording = "";
          state = MAILBOX_MENU;
          //phone.speak(MAILBOX_MENU_TEXT);
-         this.notifyObserver(MAILBOX_MENU_TEXT);
+         this.notifyToAll(MAILBOX_MENU_TEXT);
       }
    }
 
@@ -163,19 +163,19 @@ public class Connection implements Subject
       {
          state = MESSAGE_MENU;
          //phone.speak(MESSAGE_MENU_TEXT);
-         this.notifyObserver(MESSAGE_MENU_TEXT);
+         this.notifyToAll(MESSAGE_MENU_TEXT);
       }
       else if (key.equals("2"))
       {
          state = CHANGE_PASSCODE;
          //phone.speak("Enter new passcode followed by the # key");
-         this.notifyObserver("Enter new passcode followed by the # key");
+         this.notifyToAll("Enter new passcode followed by the # key");
       }
       else if (key.equals("3"))
       {
          state = CHANGE_GREETING;
          //phone.speak("Record your greeting, then press the # key");
-         this.notifyObserver("Record your greeting, then press the # key");
+         this.notifyToAll("Record your greeting, then press the # key");
       }
    }
 
@@ -193,25 +193,25 @@ public class Connection implements Subject
          else output += m.getText() + "\n";
          output += MESSAGE_MENU_TEXT;
          //phone.speak(output);
-         this.notifyObserver(output);
+         this.notifyToAll(output);
       }
       else if (key.equals("2"))
       {
          currentMailbox.saveCurrentMessage();
          //phone.speak(MESSAGE_MENU_TEXT);
-         this.notifyObserver(MESSAGE_MENU_TEXT);
+         this.notifyToAll(MESSAGE_MENU_TEXT);
       }
       else if (key.equals("3"))
       {
          currentMailbox.removeCurrentMessage();
          //phone.speak(MESSAGE_MENU_TEXT);
-         this.notifyObserver(MESSAGE_MENU_TEXT);
+         this.notifyToAll(MESSAGE_MENU_TEXT);
       }
       else if (key.equals("4"))
       {
          state = MAILBOX_MENU;
          //phone.speak(MAILBOX_MENU_TEXT);
-         this.notifyObserver(MAILBOX_MENU_TEXT);
+         this.notifyToAll(MAILBOX_MENU_TEXT);
       }
    }
 
@@ -219,19 +219,19 @@ public class Connection implements Subject
      Metodos [add - delete - notifyObserver]
      ===================================================================*/
    @Override 
-   public void addUserInterface(UserInterface userInterface) {
-	   this.userInterfaces.add(userInterface);
+   public void addTelephone(Telephone telephone) {
+	   this.telephones.add(telephone);
    }
    
    @Override
-   public void deleteUserInterface(UserInterface userInterface) {
-	   this.userInterfaces.remove(userInterface);
+   public void deleteTelephone(Telephone telephone) {
+	   this.telephones.remove(telephone);
    }
    
    @Override
-   public void notifyObserver(String output) {
-	   for(UserInterface userInterface : this.userInterfaces) {
-		   userInterface.updateInterface(output);
+   public void notifyToAll(String output) {
+	   for(Telephone telephone : this.telephones) {
+		   telephone.updateInterface(output);
 	   }
    }
    
@@ -246,9 +246,9 @@ public class Connection implements Subject
    private Mailbox currentMailbox;
    private String currentRecording;
    private String accumulatedKeys;
-   private Telephone phone;
+   private ConsoleTelephone phone;
    private int state;
-   private ArrayList<UserInterface> userInterfaces;
+   private ArrayList<Telephone> telephones;
 
    private static final int DISCONNECTED = 0;
    private static final int CONNECTED = 1;

@@ -1,13 +1,12 @@
 package ucb.voicemail.domain;
 
-public class Window implements UserInterface{
+public class Window implements Telephone{
 
 	public Window(MainMenu mainMenu){
 		this.mainMenu = mainMenu;
 		mainMenu.show();
 	}
 	
-	@Override
 	public void updateInterface(String output) {
 		this.mainMenu.changeMainLabel(output);
 	}

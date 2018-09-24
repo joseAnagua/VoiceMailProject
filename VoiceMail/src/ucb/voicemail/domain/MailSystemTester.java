@@ -12,10 +12,10 @@ public class MailSystemTester
 	  Window w = new Window(new MainMenu());
       MailSystem system = new MailSystem(MAILBOX_COUNT);
       Scanner console = new Scanner(System.in);
-      Telephone p = new Telephone(console);
+      ConsoleTelephone p = new ConsoleTelephone(console);
       Connection c = new Connection(system);
-      c.addUserInterface(p);
-      c.addUserInterface(w);
+      c.addTelephone(p);
+      c.addTelephone(w);
       c.start(); // REINICIAR LA CONEXCION PARA QUE APAREZCA " Enter mailbox number followed by #"
       w.run(c);
       p.run(c);

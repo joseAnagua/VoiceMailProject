@@ -13,16 +13,16 @@ import java.util.Scanner;
 import org.junit.Test;
 
 import ucb.voicemail.domain.Connection;
-import ucb.voicemail.domain.Telephone;
+import ucb.voicemail.domain.ConsoleTelephone;
 
 public class TelephoneTest {
 	
-	private Telephone telephone;
+	private ConsoleTelephone telephone;
 	private Connection connection;
 
 	@Test
 	public void deberiaMostrarTestRunning() {
-		this.telephone = new Telephone(new Scanner(System.in));
+		this.telephone = new ConsoleTelephone(new Scanner(System.in));
 		PrintStream out = mock(PrintStream.class);
 		System.setOut(out);
 		this.telephone.updateInterface("TestRuning");
@@ -35,7 +35,7 @@ public class TelephoneTest {
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		
-		this.telephone = new Telephone(new Scanner(System.in));
+		this.telephone = new ConsoleTelephone(new Scanner(System.in));
 		connection = mock(Connection.class);
 		
 		this.telephone.run(connection);
@@ -47,7 +47,7 @@ public class TelephoneTest {
 	    InputStream in = new ByteArrayInputStream(input.getBytes());
 	    System.setIn(in);
 		
-		telephone = new Telephone(new Scanner(System.in));
+		telephone = new ConsoleTelephone(new Scanner(System.in));
 		
 		connection = mock(Connection.class);
 		

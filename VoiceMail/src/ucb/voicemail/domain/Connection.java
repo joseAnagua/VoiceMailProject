@@ -13,8 +13,7 @@ public class Connection implements Subject
       @param s a MailSystem object
       @param p a Telephone object
    */
-   public Connection(MailSystem s)
-   {
+   public Connection(MailSystem s){
       system = s;
       this.telephones = new ArrayList<Telephone>();
       resetConnection();
@@ -24,42 +23,34 @@ public class Connection implements Subject
       Respond to the user's pressing a key on the phone touchpad
       @param key the phone key pressed by the user
    */
-   public void dial(String key)
-   {
-      if (state == CONNECTED)
-         connect(key);
-      else if (state == RECORDING)
-         login(key);
-      else if (state == CHANGE_PASSCODE)
-         changePasscode(key);
-      else if (state == CHANGE_GREETING)
-         changeGreeting(key);
-      else if (state == MAILBOX_MENU)
-         mailboxMenu(key);
-      else if (state == MESSAGE_MENU)
-         messageMenu(key);
+   public void dial(String key){
+      connectionState.dial(key, this);
    }
 
    /**
       Record voice.
       @param voice voice spoken by the user
    */
-   public void record(String voice)
-   {
-      if (state == RECORDING || state == CHANGE_GREETING)
-         currentRecording += voice;
+   public void record(String voice){ 		
+       connectionState.record(voice, this);   
    }
-
+   
+   public void currentRecord(String voice) {
+	   currentRecording += voice;
+   }
+   
    /**
       The user hangs up the phone.
    */
    public void hangup()
    {
-      if (state == RECORDING)
-         currentMailbox.addMessage(new Message(currentRecording));
+      connectionState.hangup(this);
       resetConnection();
    }
-
+   
+   public void addMessageCurrent() {
+	   currentMailbox.addMessage(new Message(currentRecording));
+   }
    /**
       Reset the connection to the initial state and prompt
       for mailbox number
@@ -68,7 +59,7 @@ public class Connection implements Subject
    {
       currentRecording = "";
       accumulatedKeys = "";
-      state = CONNECTED;
+      connectionState = new ConnectedState();
       notifyToAll(INITIAL_PROMPT);
    }
 
@@ -76,19 +67,17 @@ public class Connection implements Subject
       Try to connect the user with the specified mailbox.
       @param key the phone key pressed by the user
    */
-   private void connect(String key)
+   public void connect(String key)
    {
       if (key.equals("#"))
       {
          currentMailbox = system.findMailbox(accumulatedKeys);
          if (currentMailbox != null)
          {
-            state = RECORDING;
-            //phone.speak(currentMailbox.getGreeting());
+            connectionState = new RecordingState();
             this.notifyToAll(this.currentMailbox.getGreeting());
          }
          else
-            //phone.speak("Incorrect mailbox number. Try again!");
         	 this.notifyToAll("Incorrect mailbox number. Try again!");
          accumulatedKeys = "";
       }
@@ -100,18 +89,16 @@ public class Connection implements Subject
       Try to log in the user.
       @param key the phone key pressed by the user
    */
-   private void login(String key)
+   public void login(String key)
    {
       if (key.equals("#"))
       {
          if (currentMailbox.checkPasscode(accumulatedKeys))
          {
-            state = MAILBOX_MENU;
-            //phone.speak(MAILBOX_MENU_TEXT);
+            connectionState = new MailboxMenuState();
             this.notifyToAll(MAILBOX_MENU_TEXT);
          }
          else
-            //phone.speak("Incorrect passcode. Try again!");
         	 this.notifyToAll("Incorrect mailbox number. Try again!");
          accumulatedKeys = "";
       }
@@ -123,13 +110,12 @@ public class Connection implements Subject
       Change passcode.
       @param key the phone key pressed by the user
    */
-   private void changePasscode(String key)
+   public void changePasscode(String key)
    {
       if (key.equals("#"))
       {
          currentMailbox.setPasscode(accumulatedKeys);
-         state = MAILBOX_MENU;
-         //phone.speak(MAILBOX_MENU_TEXT);
+         connectionState = new MailboxMenuState(); 
          this.notifyToAll(MAILBOX_MENU_TEXT);
          accumulatedKeys = "";
       }
@@ -141,14 +127,12 @@ public class Connection implements Subject
       Change greeting.
       @param key the phone key pressed by the user
    */
-   private void changeGreeting(String key)
+   public void changeGreeting(String key)
    {
       if (key.equals("#"))
       {
          currentMailbox.setGreeting(currentRecording);
          currentRecording = "";
-         state = MAILBOX_MENU;
-         //phone.speak(MAILBOX_MENU_TEXT);
          this.notifyToAll(MAILBOX_MENU_TEXT);
       }
    }
@@ -157,24 +141,21 @@ public class Connection implements Subject
       Respond to the user's selection from mailbox menu.
       @param key the phone key pressed by the user
    */
-   private void mailboxMenu(String key)
+   public void mailboxMenu(String key)
    {
       if (key.equals("1"))
       {
-         state = MESSAGE_MENU;
-         //phone.speak(MESSAGE_MENU_TEXT);
+         connectionState = new MessageMenuState();
          this.notifyToAll(MESSAGE_MENU_TEXT);
       }
       else if (key.equals("2"))
       {
-         state = CHANGE_PASSCODE;
-         //phone.speak("Enter new passcode followed by the # key");
+         connectionState = new ChangePasscodeState();
          this.notifyToAll("Enter new passcode followed by the # key");
       }
       else if (key.equals("3"))
       {
-         state = CHANGE_GREETING;
-         //phone.speak("Record your greeting, then press the # key");
+         connectionState = new ChangeGreentingState();
          this.notifyToAll("Record your greeting, then press the # key");
       }
    }
@@ -183,7 +164,7 @@ public class Connection implements Subject
       Respond to the user's selection from message menu.
       @param key the phone key pressed by the user
    */
-   private void messageMenu(String key)
+   public void messageMenu(String key)
    {
       if (key.equals("1"))
       {
@@ -198,19 +179,16 @@ public class Connection implements Subject
       else if (key.equals("2"))
       {
          currentMailbox.saveCurrentMessage();
-         //phone.speak(MESSAGE_MENU_TEXT);
          this.notifyToAll(MESSAGE_MENU_TEXT);
       }
       else if (key.equals("3"))
       {
          currentMailbox.removeCurrentMessage();
-         //phone.speak(MESSAGE_MENU_TEXT);
          this.notifyToAll(MESSAGE_MENU_TEXT);
       }
       else if (key.equals("4"))
       {
-         state = MAILBOX_MENU;
-         //phone.speak(MAILBOX_MENU_TEXT);
+         connectionState = new MailboxMenuState();
          this.notifyToAll(MAILBOX_MENU_TEXT);
       }
    }
@@ -238,25 +216,15 @@ public class Connection implements Subject
    public void start() {
 	   this.resetConnection();
    }  
-   //===================================================================
-   
+   //===================================================================  
    
    
    private MailSystem system;
    private Mailbox currentMailbox;
    private String currentRecording;
    private String accumulatedKeys;
-   private ConsoleTelephone phone;
-   private int state;
+   private ConnectionState connectionState;
    private ArrayList<Telephone> telephones;
-
-   private static final int DISCONNECTED = 0;
-   private static final int CONNECTED = 1;
-   private static final int RECORDING = 2;
-   private static final int MAILBOX_MENU = 3;
-   private static final int MESSAGE_MENU = 4;
-   private static final int CHANGE_PASSCODE = 5;
-   private static final int CHANGE_GREETING = 6;
 
    private static final String INITIAL_PROMPT = 
          "Enter mailbox number followed by #";  

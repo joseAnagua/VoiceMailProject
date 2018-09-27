@@ -62,29 +62,24 @@ public class Connection implements Subject
       connectionState = new ConnectedState();
       notifyToAll(INITIAL_PROMPT);
    }
-
-   /**
-      Try to connect the user with the specified mailbox.
-      @param key the phone key pressed by the user
-   */
-   public void connect(String key)
-   {
-      if (key.equals("#"))
-      {
-         currentMailbox = system.findMailbox(accumulatedKeys);
-         if (currentMailbox != null)
-         {
-            connectionState = new RecordingState();
-            this.notifyToAll(this.currentMailbox.getGreeting());
-         }
-         else
-        	 this.notifyToAll("Incorrect mailbox number. Try again!");
-         accumulatedKeys = "";
-      }
-      else
-         accumulatedKeys += key;
+   
+   public void setState(ConnectionState state) {
+	   connectionState = state;
+   }
+   
+   public Mailbox findMailboxByAccumulatedKeys() {
+	   currentMailbox = system.findMailbox(accumulatedKeys);
+	   return currentMailbox;
    }
 
+   public void setAccumulatedKeys(String text) {
+	   accumulatedKeys = text;
+   }
+   
+   public void addAccumulatedKeys(String text) {
+	   accumulatedKeys += text;
+   }
+   
    /**
       Try to log in the user.
       @param key the phone key pressed by the user

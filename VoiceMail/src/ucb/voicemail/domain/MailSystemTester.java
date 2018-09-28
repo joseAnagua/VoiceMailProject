@@ -7,6 +7,13 @@ import ucb.voicemail.domain.Window;
 */
 public class MailSystemTester
 {
+	
+	public static int x = 5;
+	
+	public static int h1() {
+		return x = 4;
+	}
+	
    public static void main(String[] args)
    {
 	  Window w = new Window(new MainMenu());

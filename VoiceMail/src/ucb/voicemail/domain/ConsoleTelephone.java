@@ -52,11 +52,12 @@ public class ConsoleTelephone implements Telephone
             c.dial(input);
          else
             c.record(input);
+         
       }
   }
 
    	private Scanner scanner;
    	private static final String HANGUP = "H";
 	private static final String QUIT = "Q";
-	private static final String OPTIONS_ALPHA_NUMERIC= "1234567890";
+	private static final String OPTIONS_ALPHA_NUMERIC= "1234567890#";
 }

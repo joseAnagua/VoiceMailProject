@@ -17,7 +17,7 @@ public class MailSystemTester
    public static void main(String[] args)
    {
 	  Window w = new Window(new MainMenu());
-      MailSystem system = new MailSystem(MAILBOX_COUNT);
+      MailboxRepository system = new ArrayMailboxRepository(MAILBOX_COUNT);
       Scanner console = new Scanner(System.in);
       ConsoleTelephone p = new ConsoleTelephone(console);
       Connection c = new Connection(system);

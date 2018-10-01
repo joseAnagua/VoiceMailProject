@@ -8,8 +8,10 @@ public class Message
       Construct a Message object.
       @param messageText the message text
    */
-   public Message(String messageText)
+   public Message(String id_message, String id_mailbox_ext, String messageText)
    {
+	  this.id_message = id_message;
+	  this.id_mailbox_ext = id_mailbox_ext;
       text = messageText;
    }
 
@@ -23,4 +25,6 @@ public class Message
    }
 
    private String text;
+   private String id_message;
+   private String id_mailbox_ext;
 }

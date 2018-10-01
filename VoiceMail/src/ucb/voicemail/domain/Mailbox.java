@@ -9,10 +9,11 @@ public class Mailbox
       @param aPasscode passcode number
       @param aGreeting greeting string
    */
-   public Mailbox(String aPasscode, String aGreeting)
+   public Mailbox(String ext, String passcode, String greeting)
    {
-      passcode = aPasscode;
-      greeting = aGreeting;
+	  this.ext = ext;
+      this.passcode = passcode;
+      this.greeting = greeting;
       newMessages = new MessageQueue();
       keptMessages = new MessageQueue();
    }
@@ -75,24 +76,6 @@ public class Mailbox
    }
 
    /**
-      Change mailbox's greeting.
-      @param newGreeting the new greeting string
-   */
-   public void setGreeting(String newGreeting)
-   {
-      greeting = newGreeting;
-   }
-
-   /**
-      Change mailbox's passcode.
-      @param newPasscode the new passcode
-   */
-   public void setPasscode(String newPasscode)
-   {
-      passcode = newPasscode;
-   }
-
-   /**
       Get the mailbox's greeting.
       @return the greeting
    */
@@ -101,8 +84,17 @@ public class Mailbox
       return greeting;
    }
    
+   public String getExt() {
+	   return ext;
+   }
+   
+   public String getPasscode() {
+	   return passcode;
+   }
+   
    private MessageQueue newMessages;
    private MessageQueue keptMessages;
+   private String ext;
    private String greeting;
    private String passcode;
 }

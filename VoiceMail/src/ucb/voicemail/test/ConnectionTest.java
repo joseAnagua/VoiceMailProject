@@ -7,15 +7,15 @@ import org.junit.Before;
 import org.junit.Test;
 
 import ucb.voicemail.domain.Connection;
-import ucb.voicemail.domain.MailSystem;
+import ucb.voicemail.domain.ArrayMailboxRepository;
 
 public class ConnectionTest {
 	private Connection connection;
-	private MailSystem mailsystem;
+	private ArrayMailboxRepository mailsystem;
 	
 	@Before
 	public void init(){
-		this.mailsystem = mock(MailSystem.class);
+		this.mailsystem = mock(ArrayMailboxRepository.class);
 		this.connection = new Connection(this.mailsystem);
 	}
 	

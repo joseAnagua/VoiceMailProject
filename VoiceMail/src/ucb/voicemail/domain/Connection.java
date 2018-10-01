@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Connection implements Subject
 {
-   public Connection(MailSystem s){
+   public Connection(MailboxRepository s){
       system = s;
       this.telephones = new ArrayList<Telephone>();
       resetConnection();
@@ -28,7 +28,7 @@ public class Connection implements Subject
    }
    
    public void addMessageCurrent() {
-	   currentMailbox.addMessage(new Message(currentRecording));
+	   currentMailbox.addMessage(new Message("0", "0", currentRecording));
    }
    
    private void resetConnection()
@@ -71,6 +71,10 @@ public class Connection implements Subject
 	   return currentRecording;
    }
    
+   public MailboxRepository getMailboxRepository() {
+	   return system;
+   }
+   
    /*===================================================================
      Metodos [add - delete - notifyObserver]
      ===================================================================*/
@@ -95,7 +99,7 @@ public class Connection implements Subject
 	   this.resetConnection();
    }  
    
-   private MailSystem system;
+   private MailboxRepository system;
    private Mailbox currentMailbox;
    private String currentRecording;
    private String accumulatedKeys;

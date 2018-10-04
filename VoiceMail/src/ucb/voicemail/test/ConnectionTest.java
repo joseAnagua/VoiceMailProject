@@ -16,7 +16,7 @@ public class ConnectionTest {
 	@Before
 	public void init(){
 		this.mailsystem = mock(ArrayMailboxRepository.class);
-		this.connection = new Connection(this.mailsystem);
+		this.connection = new Connection(this.mailsystem, null);
 	}
 	
 	@Test

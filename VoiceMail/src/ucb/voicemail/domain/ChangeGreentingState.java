@@ -7,8 +7,8 @@ public class ChangeGreentingState implements ConnectionState {
 		if (key.equals("#"))
 	    {
 			MailboxRepository mailboxRepository = connection.getMailboxRepository();
-			Mailbox currentMailbox = connection.getCurrentMailbox();
-	        mailboxRepository.setGreeting(connection.getCurrentRecording(), currentMailbox.getExt());
+			String currentMailboxId = connection.getCurrentMailboxId();
+	        mailboxRepository.setGreeting(connection.getCurrentRecording(), currentMailboxId);
 			connection.setCurrentRecording("");
 	        connection.setState(new MailboxMenuState());
 	        connection.notifyToAll(MAILBOX_MENU_TEXT);

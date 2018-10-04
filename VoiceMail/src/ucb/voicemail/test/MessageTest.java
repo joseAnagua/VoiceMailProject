@@ -15,7 +15,7 @@ public class MessageTest {
 	@Before
 	public void init() {
 		text = "Hola soy mensaje de prueba";
-		message = new Message("", "", text);
+		message = new Message("", text);
 	}
 	
 	@Test

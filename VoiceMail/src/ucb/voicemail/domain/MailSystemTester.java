@@ -17,10 +17,11 @@ public class MailSystemTester
    public static void main(String[] args)
    {
 	  Window w = new Window(new MainMenu());
-      MailboxRepository system = new ArrayMailboxRepository(MAILBOX_COUNT);
+      MailboxRepository mailboxRepository = new ArrayMailboxRepository(MAILBOX_COUNT);
+      MessageRepository messageRepository = new ArrayMessageRepository(MAILBOX_COUNT);
       Scanner console = new Scanner(System.in);
       ConsoleTelephone p = new ConsoleTelephone(console);
-      Connection c = new Connection(system);
+      Connection c = new Connection(mailboxRepository, messageRepository);
       c.addTelephone(p);
       c.addTelephone(w);
       c.start(); // REINICIAR LA CONEXCION PARA QUE APAREZCA " Enter mailbox number followed by #"

@@ -6,7 +6,7 @@ public class RecordingState implements ConnectionState {
 	public void dial(String key, Connection connection) {
 		if (key.equals("#"))
 	    {
-			Mailbox currentMailbox = connection.getCurrentMailbox();
+			Mailbox currentMailbox = connection.getMailboxRepository().findMailbox(connection.getCurrentMailboxId());
 			if (currentMailbox.checkPasscode(connection.getAccumulatedKeys()))
 	        {
 				connection.setState(new MailboxMenuState());
@@ -27,7 +27,8 @@ public class RecordingState implements ConnectionState {
 
 	@Override
 	public void hangup(Connection connection) {
-		connection.addMessageCurrent();
+		MessageRepository messageRepository = connection.getMessageRepository();
+		messageRepository.addMessage(connection.getCurrentRecording(), connection.getCurrentMailboxId());
 	}
 
 	private static final String MAILBOX_MENU_TEXT = 

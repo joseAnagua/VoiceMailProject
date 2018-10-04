@@ -3,7 +3,7 @@ package ucb.voicemail.domain;
 import java.util.ArrayList;
 
 public class Connection implements Subject {
-	
+
 	public Connection(MailboxRepository mailboxRepository, MessageRepository messageRepository) {
 		this.mailboxRepository = mailboxRepository;
 		this.messageRepository = messageRepository;
@@ -23,7 +23,7 @@ public class Connection implements Subject {
 		connectionState.hangup(this);
 		resetConnection();
 	}
-	
+
 	public void currentRecord(String voice) {
 		currentRecording += voice;
 	}
@@ -38,13 +38,17 @@ public class Connection implements Subject {
 	public void setState(ConnectionState state) {
 		connectionState = state;
 	}
-	
+
+	public ConnectionState getState() {
+		return connectionState;
+	}
+
 	public Mailbox findMailboxByAccumulatedKeys() {
 		Mailbox currentMailbox = mailboxRepository.findMailbox(accumulatedKeys);
 		id_current_mailbox = currentMailbox.getExt();
 		return currentMailbox;
 	}
-	
+
 	public void setAccumulatedKeys(String text) {
 		accumulatedKeys = text;
 	}

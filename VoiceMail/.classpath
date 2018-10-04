@@ -4,5 +4,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="/Users/anh2o/Desktop/Proyectos/VoiceMailProject/VoiceMail/lib/mockito-all-1.9.0-rc1.jar"/>
+	<classpathentry kind="lib" path="/Users/anh2o/Desktop/Proyectos/VoiceMailProject/VoiceMail/lib/sqlite-jdbc-3.21.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

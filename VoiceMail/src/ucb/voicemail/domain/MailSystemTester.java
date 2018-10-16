@@ -6,7 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
-import ucb.voicemail.domain.Window;
+
+import ucb.voicemail.presentation.console.ConsoleTelephone;
+import ucb.voicemail.presentation.graphical.MainMenu;
+import ucb.voicemail.presentation.graphical.Window;
 import ucb.voicemail.repository.mailbox.SQLiteMailboxRepository;
 import ucb.voicemail.repository.message.SQLiteMessageRepository;
 

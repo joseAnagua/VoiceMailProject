@@ -1,6 +1,8 @@
-package ucb.voicemail.domain;
+package ucb.voicemail.repository.message;
 
 import java.util.ArrayList;
+
+import ucb.voicemail.domain.Message;
 
 /**
  * A first-in, first-out collection of messages. This implementation is not very

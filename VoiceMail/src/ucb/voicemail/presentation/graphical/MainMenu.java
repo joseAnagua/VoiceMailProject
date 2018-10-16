@@ -1,4 +1,4 @@
-package ucb.voicemail.domain;
+package ucb.voicemail.presentation.graphical;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;

@@ -1,4 +1,7 @@
-package ucb.voicemail.domain;
+package ucb.voicemail.presentation.graphical;
+
+import ucb.voicemail.domain.Connection;
+import ucb.voicemail.domain.Telephone;
 
 public class Window implements Telephone{
 

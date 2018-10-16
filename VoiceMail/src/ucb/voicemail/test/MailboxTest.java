@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import ucb.voicemail.domain.Mailbox;
 import ucb.voicemail.domain.Message;
-import ucb.voicemail.domain.MessageQueue;
+import ucb.voicemail.repository.message.MessageQueue;
 
 public class MailboxTest {
 	Mailbox mailbox;

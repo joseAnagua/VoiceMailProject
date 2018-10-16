@@ -13,7 +13,7 @@ import java.util.Scanner;
 import org.junit.Test;
 
 import ucb.voicemail.domain.Connection;
-import ucb.voicemail.domain.ConsoleTelephone;
+import ucb.voicemail.presentation.console.ConsoleTelephone;
 
 public class TelephoneTest {
 	

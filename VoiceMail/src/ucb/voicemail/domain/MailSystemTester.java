@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 import ucb.voicemail.domain.Window;
+import ucb.voicemail.repository.mailbox.SQLiteMailboxRepository;
+import ucb.voicemail.repository.message.SQLiteMessageRepository;
 
 /**
  * This program tests the mail system. A single phone communicates with the

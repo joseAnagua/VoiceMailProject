@@ -13,7 +13,7 @@ import ucb.voicemail.domain.ConnectionState;
 import ucb.voicemail.domain.Mailbox;
 import ucb.voicemail.domain.MailboxRepository;
 import ucb.voicemail.domain.Telephone;
-import ucb.voicemail.domain.ArrayMailboxRepository;
+import ucb.voicemail.repository.mailbox.ArrayMailboxRepository;
 
 public class ConnectionTest {
 	private Connection connection;

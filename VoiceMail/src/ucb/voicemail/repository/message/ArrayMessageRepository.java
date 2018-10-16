@@ -1,7 +1,11 @@
-package ucb.voicemail.domain;
+package ucb.voicemail.repository.message;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import ucb.voicemail.domain.Message;
+import ucb.voicemail.domain.MessageQueue;
+import ucb.voicemail.domain.MessageRepository;
 
 public class ArrayMessageRepository implements MessageRepository {
 

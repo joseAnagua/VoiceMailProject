@@ -1,7 +1,10 @@
-package ucb.voicemail.domain;
+package ucb.voicemail.repository.message;
 
 import java.sql.Connection;
 import java.sql.Statement;
+
+import ucb.voicemail.domain.Message;
+import ucb.voicemail.domain.MessageRepository;
 
 public class SQLiteMessageRepository implements MessageRepository {
 	private Connection connection;

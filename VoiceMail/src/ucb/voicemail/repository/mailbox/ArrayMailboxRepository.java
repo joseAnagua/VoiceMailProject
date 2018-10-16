@@ -1,5 +1,8 @@
-package ucb.voicemail.domain;
+package ucb.voicemail.repository.mailbox;
 import java.util.ArrayList;
+
+import ucb.voicemail.domain.Mailbox;
+import ucb.voicemail.domain.MailboxRepository;
 
 /**
    A system of voice mail boxes.

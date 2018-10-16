@@ -4,7 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
-import ucb.voicemail.domain.ArrayMailboxRepository;
+
+import ucb.voicemail.repository.mailbox.ArrayMailboxRepository;
 
 public class MailSystemTest {
 

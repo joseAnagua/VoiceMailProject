@@ -117,3 +117,4 @@ public class Connection implements Subject {
 
 	private static final String INITIAL_PROMPT = "Enter mailbox number followed by #";
 }
+

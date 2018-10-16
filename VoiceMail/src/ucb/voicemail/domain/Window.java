@@ -20,3 +20,4 @@ public class Window implements Telephone{
 	private MainMenu mainMenu;
 	private Connection connection;
 }
+

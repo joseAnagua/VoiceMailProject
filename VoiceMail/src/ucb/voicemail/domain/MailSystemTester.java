@@ -87,3 +87,4 @@ public class MailSystemTester {
 	private static final int MAILBOX_COUNT = 20;
 	private static java.sql.Connection sqliteConnection;
 }
+

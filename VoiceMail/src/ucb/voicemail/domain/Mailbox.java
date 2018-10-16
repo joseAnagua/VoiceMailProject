@@ -30,3 +30,4 @@ public class Mailbox {
 	private String greeting;
 	private String passcode;
 }
+

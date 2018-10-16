@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.2" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="ucb.voicemail.domain.MailboxMenuState" project="VoiceMail" 
-    file="/VoiceMail/src/ucb/voicemail/domain/MailboxMenuState.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="1" language="java" name="ucb.voicemail.domain.connection.state.MailboxMenuState" project="VoiceMail" 
+    file="/VoiceMail/src/ucb/voicemail/domain/connection/state/MailboxMenuState.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="263" y="-51"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -19,8 +20,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="ucb.voicemail.domain.ChangeGreentingState" project="VoiceMail" 
-    file="/VoiceMail/src/ucb/voicemail/domain/ChangeGreentingState.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="3" language="java" name="ucb.voicemail.domain.connection.state.ChangeGreentingState" project="VoiceMail" 
+    file="/VoiceMail/src/ucb/voicemail/domain/connection/state/ChangeGreentingState.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="521" y="-56"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -28,8 +30,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="ucb.voicemail.domain.ConnectedState" project="VoiceMail" 
-    file="/VoiceMail/src/ucb/voicemail/domain/ConnectedState.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="4" language="java" name="ucb.voicemail.domain.connection.state.ConnectedState" project="VoiceMail" 
+    file="/VoiceMail/src/ucb/voicemail/domain/connection/state/ConnectedState.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="750" y="-56"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -46,8 +48,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="6" language="java" name="ucb.voicemail.domain.ChangePasscodeState" project="VoiceMail" 
-    file="/VoiceMail/src/ucb/voicemail/domain/ChangePasscodeState.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="6" language="java" name="ucb.voicemail.domain.connection.state.ChangePasscodeState" project="VoiceMail" 
+    file="/VoiceMail/src/ucb/voicemail/domain/connection/state/ChangePasscodeState.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="979" y="-56"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -55,8 +58,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="ucb.voicemail.domain.RecordingState" project="VoiceMail" 
-    file="/VoiceMail/src/ucb/voicemail/domain/RecordingState.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="7" language="java" name="ucb.voicemail.domain.connection.state.RecordingState" project="VoiceMail" 
+    file="/VoiceMail/src/ucb/voicemail/domain/connection/state/RecordingState.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1208" y="-56"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -64,8 +67,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="ucb.voicemail.domain.MessageMenuState" project="VoiceMail" 
-    file="/VoiceMail/src/ucb/voicemail/domain/MessageMenuState.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="8" language="java" name="ucb.voicemail.domain.connection.state.MessageMenuState" project="VoiceMail" 
+    file="/VoiceMail/src/ucb/voicemail/domain/connection/state/MessageMenuState.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1437" y="-56"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -74,37 +78,41 @@
     </display>  
   </class>  
   <realization id="9">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="5"/>  
-  </realization>  
-  <realization id="10">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="5"/>  
-  </realization>  
-  <realization id="11">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="5"/>  
   </realization>  
-  <realization id="12">    
+  <realization id="10">    
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="5"/>  
   </realization>  
-  <realization id="13">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="5"/>  
-  </realization>  
-  <realization id="14">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="5"/>  
-  </realization>  
-  <association id="15">    
+  <association id="11">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="16" name="connectionState"/>      
-      <multiplicity id="17" minimum="0" maximum="1"/>    
+      <attribute id="12" name="connectionState">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="13" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <realization id="14">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="5"/>  
+  </realization>  
+  <realization id="15">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="5"/>  
+  </realization>  
+  <realization id="16">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="5"/>  
+  </realization>  
+  <realization id="17">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="5"/>  
+  </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

@@ -2,6 +2,8 @@ package ucb.voicemail.domain;
 
 import java.util.ArrayList;
 
+import ucb.voicemail.domain.connection.state.ConnectedState;
+
 public class Connection implements Subject {
 
 	public Connection(MailboxRepository mailboxRepository, MessageRepository messageRepository) {

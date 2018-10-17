@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 import ucb.voicemail.presentation.console.ConsoleTelephone;
 import ucb.voicemail.presentation.graphical.MainMenu;
-import ucb.voicemail.presentation.graphical.Window;
+import ucb.voicemail.presentation.graphical.GraphicalTelephone;
 import ucb.voicemail.repository.mailbox.SQLiteMailboxRepository;
 import ucb.voicemail.repository.message.SQLiteMessageRepository;
 
@@ -30,7 +30,7 @@ public class MailSystemTester {
 			MailboxRepository mailboxRepository = new SQLiteMailboxRepository(sqliteConnection);
 			MessageRepository messageRepository = new SQLiteMessageRepository(sqliteConnection);
 			
-			Window w = new Window(new MainMenu());
+			GraphicalTelephone w = new GraphicalTelephone(new MainMenu());
 			Scanner console = new Scanner(System.in);
 			ConsoleTelephone p = new ConsoleTelephone(console);
 			Connection c = new Connection(mailboxRepository, messageRepository);

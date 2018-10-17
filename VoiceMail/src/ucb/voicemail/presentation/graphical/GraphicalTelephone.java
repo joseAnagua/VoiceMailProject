@@ -3,9 +3,9 @@ package ucb.voicemail.presentation.graphical;
 import ucb.voicemail.domain.Connection;
 import ucb.voicemail.domain.Telephone;
 
-public class Window implements Telephone{
+public class GraphicalTelephone implements Telephone {
 
-	public Window(MainMenu mainMenu){
+	public GraphicalTelephone(MainMenu mainMenu){
 		this.mainMenu = mainMenu;
 		mainMenu.show();
 	}

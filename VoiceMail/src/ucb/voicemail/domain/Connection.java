@@ -120,5 +120,58 @@ public class Connection implements Subject {
 	private ArrayList<Telephone> telephones;
 
 	private static final String INITIAL_PROMPT = "Enter mailbox number followed by #";
+	
+	public void displayInitialPrompt() {
+		for (Telephone telephone : this.telephones) {
+			telephone.getPresenter().displayInitialPrompt();
+		}
+	}
+	
+	public void displayMailboxMessageError() {
+		for (Telephone telephone : this.telephones) {
+			telephone.getPresenter().displayMailboxMessageError();
+		}
+	}
+	
+	public void displayMailboxGreeting(Mailbox mailbox) {
+		for (Telephone telephone : this.telephones) {
+			telephone.getPresenter().displayMailboxGreeting(mailbox);
+		}
+	}
+	
+	public void displayMailboxMenu() {
+		for (Telephone telephone : this.telephones) {
+			telephone.getPresenter().displayMailboxMenu();
+		}
+	}
+	
+	public void displaypPasscodeMessageError() {
+		for (Telephone telephone : this.telephones) {
+			telephone.getPresenter().displaypPasscodeMessageError();
+		}
+	}
+	
+	public void displayMessageMenu() {
+		for (Telephone telephone : this.telephones) {
+			telephone.getPresenter().displayMessageMenu();
+		}
+	}
+	
+	public void displayCurrentMessage(Message message) {
+		for (Telephone telephone : this.telephones) {
+			telephone.getPresenter().displayCurrentMessage(message);
+		}
+	}
+	
+	public void displayChangePasscodeMessage() {
+		for (Telephone telephone : this.telephones) {
+			telephone.getPresenter().displayChangePasscodeMessage();
+		}
+	}
+	
+	public void displayChangeGreetingMessage() {
+		for (Telephone telephone : this.telephones) {
+			telephone.getPresenter().displayChangeGreetingMessage();
+		}
+	}
 }
-

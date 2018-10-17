@@ -22,7 +22,7 @@ public class TelephoneTest {
 
 	@Test
 	public void deberiaMostrarTestRunning() {
-		this.telephone = new ConsoleTelephone(new Scanner(System.in));
+		this.telephone = new ConsoleTelephone(new Scanner(System.in), null);
 		PrintStream out = mock(PrintStream.class);
 		System.setOut(out);
 		this.telephone.updateInterface("TestRuning");
@@ -35,7 +35,7 @@ public class TelephoneTest {
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		
-		this.telephone = new ConsoleTelephone(new Scanner(System.in));
+		this.telephone = new ConsoleTelephone(new Scanner(System.in), null);
 		connection = mock(Connection.class);
 		
 		this.telephone.run(connection);
@@ -47,7 +47,7 @@ public class TelephoneTest {
 	    InputStream in = new ByteArrayInputStream(input.getBytes());
 	    System.setIn(in);
 		
-		telephone = new ConsoleTelephone(new Scanner(System.in));
+		telephone = new ConsoleTelephone(new Scanner(System.in), null);
 		
 		connection = mock(Connection.class);
 		

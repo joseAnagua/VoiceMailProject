@@ -7,11 +7,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
+import ucb.voicemail.domain.boundary.output.Presenter;
 import ucb.voicemail.presentation.console.ConsoleTelephone;
 import ucb.voicemail.presentation.graphical.GraphicalTelephone;
+import ucb.voicemail.presentation.graphical.presenter.GraphicalPresenter;
 import ucb.voicemail.presentation.graphical.view.MainMenu;
 import ucb.voicemail.repository.mailbox.SQLiteMailboxRepository;
 import ucb.voicemail.repository.message.SQLiteMessageRepository;
+import ucb.voicemail.presentation.console.presenter.ConsolePresenter;
+import ucb.voicemail.presentation.console.view.ConsoleView;
 
 /**
  * This program tests the mail system. A single phone communicates with the
@@ -30,9 +34,13 @@ public class MailSystemTester {
 			MailboxRepository mailboxRepository = new SQLiteMailboxRepository(sqliteConnection);
 			MessageRepository messageRepository = new SQLiteMessageRepository(sqliteConnection);
 			
-			GraphicalTelephone w = new GraphicalTelephone(new MainMenu());
+			MainMenu mainMenu = new MainMenu();
+			
+			Presenter consolePresenter = new ConsolePresenter(new ConsoleView());
+			Presenter graphicalPresenter = new GraphicalPresenter(mainMenu);
+			GraphicalTelephone w = new GraphicalTelephone(mainMenu, graphicalPresenter);
 			Scanner console = new Scanner(System.in);
-			ConsoleTelephone p = new ConsoleTelephone(console);
+			ConsoleTelephone p = new ConsoleTelephone(console, consolePresenter);
 			Connection c = new Connection(mailboxRepository, messageRepository);
 			c.addTelephone(p);
 			c.addTelephone(w);

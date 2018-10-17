@@ -47,7 +47,9 @@ public class Connection implements Subject {
 
 	public Mailbox findMailboxByAccumulatedKeys() {
 		Mailbox currentMailbox = mailboxRepository.findMailbox(accumulatedKeys);
-		id_current_mailbox = currentMailbox.getExt();
+		if(currentMailbox != null) {
+			id_current_mailbox = currentMailbox.getExt();
+		}
 		return currentMailbox;
 	}
 

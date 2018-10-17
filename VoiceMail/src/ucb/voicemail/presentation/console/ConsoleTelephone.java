@@ -4,10 +4,11 @@ import java.util.Scanner;
 
 import ucb.voicemail.domain.Connection;
 import ucb.voicemail.domain.Telephone;
+import ucb.voicemail.domain.boundary.output.Presenter;
 
 public class ConsoleTelephone implements Telephone {
 
-	public ConsoleTelephone(Scanner aScanner) {
+	public ConsoleTelephone(Scanner aScanner, Presenter presenter) {
 		scanner = aScanner;
 	}
 
@@ -15,6 +16,7 @@ public class ConsoleTelephone implements Telephone {
 		System.out.println(output);
 	}
 
+	@Override
 	public void updateInterface(String output) {
 		System.out.println(output);
 	}
@@ -36,6 +38,12 @@ public class ConsoleTelephone implements Telephone {
 		}
 	}
 
+	@Override
+	public Presenter getPresenter() {
+		return presenter;
+	}
+	
+	private Presenter presenter;
 	private Scanner scanner;
 	private static final String HANGUP = "H";
 	private static final String QUIT = "Q";

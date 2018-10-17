@@ -1,4 +1,4 @@
-package ucb.voicemail.presentation.graphical;
+package ucb.voicemail.presentation.graphical.view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -205,7 +205,7 @@ public class MainMenu extends JFrame {
 		this.lblOutput = lblOutput;
 	}
 
-	public void changeMainLabel(String output) {
+	public void display(String output) {
 		output = "<html>" + output.replaceAll("\n", "<br/>") + "</html>";
 		lblOutput.setText(output);
 	}

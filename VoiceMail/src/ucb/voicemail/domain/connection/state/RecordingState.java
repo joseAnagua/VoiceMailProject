@@ -18,7 +18,7 @@ public class RecordingState implements ConnectionState {
 	            connection.notifyToAll(MAILBOX_MENU_TEXT);
 	        }
 	        else
-	        	connection.notifyToAll("Incorrect mailbox number. Try again!");
+	        	connection.notifyToAll("Incorrect passcode. Try again!");
 	        connection.setAccumulatedKeys("");
 	   }
 	   else

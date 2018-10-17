@@ -8,8 +8,8 @@ import java.sql.Statement;
 import java.util.Scanner;
 
 import ucb.voicemail.presentation.console.ConsoleTelephone;
-import ucb.voicemail.presentation.graphical.MainMenu;
 import ucb.voicemail.presentation.graphical.GraphicalTelephone;
+import ucb.voicemail.presentation.graphical.view.MainMenu;
 import ucb.voicemail.repository.mailbox.SQLiteMailboxRepository;
 import ucb.voicemail.repository.message.SQLiteMessageRepository;
 

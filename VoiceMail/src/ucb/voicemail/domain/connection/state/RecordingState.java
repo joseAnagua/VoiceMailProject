@@ -6,26 +6,20 @@ import ucb.voicemail.domain.Mailbox;
 import ucb.voicemail.domain.MessageRepository;
 
 public class RecordingState implements ConnectionState {
-	
+
 	@Override
 	public void dial(String key, Connection connection) {
-		if (key.equals("#"))
-	    {
+		if (key.equals("#")) {
 			Mailbox currentMailbox = connection.getMailboxRepository().findMailbox(connection.getCurrentMailboxId());
-			if (currentMailbox.checkPasscode(connection.getAccumulatedKeys()))
-	        {
+			if (currentMailbox.checkPasscode(connection.getAccumulatedKeys())) {
 				connection.setState(new MailboxMenuState());
-	            connection.displayMailboxMenu();
-				//connection.notifyToAll(MAILBOX_MENU_TEXT);
-	        }
-	        else {
-	        	connection.displaypPasscodeMessageError();
-	        	//connection.notifyToAll("Incorrect passcode. Try again!");
-	        }
-	        connection.setAccumulatedKeys("");
-	   }
-	   else
-		   connection.addAccumulatedKeys(key);
+				connection.getPresenter().displayMailboxMenu();
+			} else {
+				connection.getPresenter().displaypPasscodeMessageError();
+			}
+			connection.setAccumulatedKeys("");
+		} else
+			connection.addAccumulatedKeys(key);
 	}
 
 	@Override

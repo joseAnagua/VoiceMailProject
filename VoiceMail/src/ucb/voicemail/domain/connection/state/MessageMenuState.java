@@ -11,27 +11,17 @@ public class MessageMenuState implements ConnectionState {
 	public void dial(String key, Connection connection) {
 		MessageRepository messageRepository = connection.getMessageRepository();
 		if (key.equals("1")) {
-			String output = "";
 			Message message = messageRepository.getCurrentMessage(connection.getCurrentMailboxId());
-			connection.displayCurrentMessage(message);
-			/*if (message == null)
-				output += "No messages." + "\n";
-			else
-				output += message.getText() + "\n";
-			output += MESSAGE_MENU_TEXT;
-			connection.notifyToAll(output);*/
+			connection.getPresenter().displayCurrentMessage(message);
 		} else if (key.equals("2")) {
 			messageRepository.saveCurrentMessage(connection.getCurrentMailboxId());
-			connection.displayMessageMenu();
-			//connection.notifyToAll(MESSAGE_MENU_TEXT);
+			connection.getPresenter().displayMessageMenu();
 		} else if (key.equals("3")) {
 			messageRepository.removeCurrentMessage(connection.getCurrentMailboxId());
-			connection.displayMessageMenu();
-			//connection.notifyToAll(MESSAGE_MENU_TEXT);
+			connection.getPresenter().displayMessageMenu();
 		} else if (key.equals("4")) {
 			connection.setState(new MailboxMenuState());
-			connection.displayMailboxMenu();
-			//connection.notifyToAll(MAILBOX_MENU_TEXT);
+			connection.getPresenter().displayMailboxMenu();
 		}
 	}
 

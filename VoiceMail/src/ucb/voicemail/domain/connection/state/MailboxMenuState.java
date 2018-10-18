@@ -7,24 +7,16 @@ public class MailboxMenuState implements ConnectionState {
 
 	@Override
 	public void dial(String key, Connection connection) {
-		if (key.equals("1"))
-	    {
+		if (key.equals("1")) {
 			connection.setState(new MessageMenuState());
-			connection.displayMessageMenu();
-			//connection.notifyToAll(MESSAGE_MENU_TEXT);
-	    }
-	    else if (key.equals("2"))
-	    {
-	    	connection.setState(new ChangePasscodeState());
-	        connection.displayChangePasscodeMessage();
-	    	//connection.notifyToAll("Enter new passcode followed by the # key");
-	    }
-	    else if (key.equals("3"))
-	    {
-	    	connection.setState(new ChangeGreentingState());
-	        connection.displayChangeGreetingMessage();
-	    	//connection.notifyToAll("Record your greeting, then press the # key");
-	    }
+			connection.getPresenter().displayMessageMenu();
+		} else if (key.equals("2")) {
+			connection.setState(new ChangePasscodeState());
+			connection.getPresenter().displayChangePasscodeMessage();
+		} else if (key.equals("3")) {
+			connection.setState(new ChangeGreentingState());
+			connection.getPresenter().displayChangeGreetingMessage();
+		}
 	}
 
 	@Override

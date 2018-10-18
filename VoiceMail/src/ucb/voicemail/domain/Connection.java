@@ -1,15 +1,15 @@
 package ucb.voicemail.domain;
 
-import java.util.ArrayList;
-
+import ucb.voicemail.domain.boundary.output.Presenter;
 import ucb.voicemail.domain.connection.state.ConnectedState;
+import ucb.voicemail.presentation.presenter.ConnectionPresenter;
 
 public class Connection implements Subject {
 
 	public Connection(MailboxRepository mailboxRepository, MessageRepository messageRepository) {
 		this.mailboxRepository = mailboxRepository;
 		this.messageRepository = messageRepository;
-		this.telephones = new ArrayList<Telephone>();
+		this.presenter = new ConnectionPresenter();
 		resetConnection();
 	}
 
@@ -34,8 +34,7 @@ public class Connection implements Subject {
 		currentRecording = "";
 		accumulatedKeys = "";
 		connectionState = new ConnectedState();
-		this.displayInitialPrompt();
-		//notifyToAll(INITIAL_PROMPT);
+		this.getPresenter().displayInitialPrompt();
 	}
 
 	public void setState(ConnectionState state) {
@@ -48,7 +47,7 @@ public class Connection implements Subject {
 
 	public Mailbox findMailboxByAccumulatedKeys() {
 		Mailbox currentMailbox = mailboxRepository.findMailbox(accumulatedKeys);
-		if(currentMailbox != null) {
+		if (currentMailbox != null) {
 			id_current_mailbox = currentMailbox.getExt();
 		}
 		return currentMailbox;
@@ -86,6 +85,10 @@ public class Connection implements Subject {
 		return messageRepository;
 	}
 
+	public Presenter getPresenter() {
+		return presenter;
+	}
+
 	/*
 	 * =================================================================== Metodos
 	 * [add - delete - notifyObserver]
@@ -93,19 +96,12 @@ public class Connection implements Subject {
 	 */
 	@Override
 	public void addTelephone(Telephone telephone) {
-		this.telephones.add(telephone);
+		this.presenter.addTelephone(telephone);
 	}
 
 	@Override
 	public void deleteTelephone(Telephone telephone) {
-		this.telephones.remove(telephone);
-	}
-
-	@Override
-	public void notifyToAll(String output) {
-		for (Telephone telephone : this.telephones) {
-			telephone.updateInterface(output);
-		}
+		this.presenter.deleteTelephone(telephone);
 	}
 
 	public void start() {
@@ -118,59 +114,5 @@ public class Connection implements Subject {
 	private String currentRecording;
 	private String accumulatedKeys;
 	private ConnectionState connectionState;
-	private ArrayList<Telephone> telephones;
-	
-	public void displayInitialPrompt() {
-		for (Telephone telephone : this.telephones) {
-			telephone.getPresenter().displayInitialPrompt();
-		}
-	}
-	
-	public void displayMailboxMessageError() {
-		for (Telephone telephone : this.telephones) {
-			telephone.getPresenter().displayMailboxMessageError();
-		}
-	}
-	
-	public void displayMailboxGreeting(Mailbox mailbox) {
-		for (Telephone telephone : this.telephones) {
-			telephone.getPresenter().displayMailboxGreeting(mailbox);
-		}
-	}
-	
-	public void displayMailboxMenu() {
-		for (Telephone telephone : this.telephones) {
-			telephone.getPresenter().displayMailboxMenu();
-		}
-	}
-	
-	public void displaypPasscodeMessageError() {
-		for (Telephone telephone : this.telephones) {
-			telephone.getPresenter().displaypPasscodeMessageError();
-		}
-	}
-	
-	public void displayMessageMenu() {
-		for (Telephone telephone : this.telephones) {
-			telephone.getPresenter().displayMessageMenu();
-		}
-	}
-	
-	public void displayCurrentMessage(Message message) {
-		for (Telephone telephone : this.telephones) {
-			telephone.getPresenter().displayCurrentMessage(message);
-		}
-	}
-	
-	public void displayChangePasscodeMessage() {
-		for (Telephone telephone : this.telephones) {
-			telephone.getPresenter().displayChangePasscodeMessage();
-		}
-	}
-	
-	public void displayChangeGreetingMessage() {
-		for (Telephone telephone : this.telephones) {
-			telephone.getPresenter().displayChangeGreetingMessage();
-		}
-	}
+	private ConnectionPresenter presenter;
 }

@@ -8,28 +8,22 @@ public class ConnectedState implements ConnectionState {
 
 	@Override
 	public void dial(String key, Connection connection) {
-		if (key.equals("#"))
-		{
+		if (key.equals("#")) {
 			Mailbox currentMailbox = connection.findMailboxByAccumulatedKeys();
-			if (currentMailbox != null)
-			{
+			if (currentMailbox != null) {
 				connection.setState(new RecordingState());
-				connection.displayMailboxGreeting(currentMailbox);
-				//connection.notifyToAll(currentMailbox.getGreeting());
-			}
-			else {
-				connection.displayMailboxMessageError();
-				//connection.notifyToAll("Incorrect mailbox number. Try again!");	
+				connection.getPresenter().displayMailboxGreeting(currentMailbox);
+			} else {
+				connection.getPresenter().displayMailboxMessageError();
 			}
 			connection.setAccumulatedKeys("");
-		}
-		else
+		} else
 			connection.addAccumulatedKeys(key);
 	}
 
 	@Override
 	public void record(String voice, Connection connection) {
-		
+
 	}
 
 	@Override

@@ -83,7 +83,7 @@ public class ConnectionTest {
 	public void deberiaNotificarTelefono() {
 		Telephone telephone = mock(Telephone.class);
 		connection.addTelephone(telephone);
-		connection.notifyToAll("Hola");
+		//connection.notifyToAll("Hola");
 		verify(telephone).updateInterface(any(String.class));
 	}
 	
@@ -94,7 +94,7 @@ public class ConnectionTest {
 		connection.addTelephone(t1);
 		connection.addTelephone(t2);
 		connection.deleteTelephone(t1);
-		connection.notifyToAll("Hola");
+		//connection.notifyToAll("Hola");
 		verify(t1, never()).updateInterface(any(String.class));
 		verify(t2).updateInterface(any(String.class));
 	}

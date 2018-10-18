@@ -5,20 +5,17 @@ import ucb.voicemail.domain.ConnectionState;
 import ucb.voicemail.domain.MailboxRepository;
 
 public class ChangePasscodeState implements ConnectionState {
-	
+
 	@Override
 	public void dial(String key, Connection connection) {
-		if (key.equals("#"))
-		{
+		if (key.equals("#")) {
 			MailboxRepository mailboxRepository = connection.getMailboxRepository();
 			String currentMailboxId = connection.getCurrentMailboxId();
 			mailboxRepository.setPasscode(connection.getAccumulatedKeys(), currentMailboxId);
 			connection.setState(new MailboxMenuState());
-			connection.displayMailboxMenu();
-			//connection.notifyToAll(MAILBOX_MENU_TEXT);
+			connection.getPresenter().displayMailboxMenu();
 			connection.setAccumulatedKeys("");
-		}
-		else
+		} else
 			connection.addAccumulatedKeys(key);
 	}
 

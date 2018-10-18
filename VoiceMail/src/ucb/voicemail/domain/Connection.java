@@ -44,14 +44,10 @@ public class Connection implements Subject {
 		return connectionState;
 	}
 
-	public Mailbox findMailboxByAccumulatedKeys() {
-		Mailbox currentMailbox = mailboxRepository.findMailbox(accumulatedKeys);
-		if (currentMailbox != null) {
-			id_current_mailbox = currentMailbox.getExt();
-		}
-		return currentMailbox;
+	public void setCurrentMailboxId(String ext) {
+		id_current_mailbox = ext;
 	}
-
+	
 	public void setAccumulatedKeys(String text) {
 		accumulatedKeys = text;
 	}

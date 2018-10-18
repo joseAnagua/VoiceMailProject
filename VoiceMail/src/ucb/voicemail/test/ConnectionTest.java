@@ -69,7 +69,7 @@ public class ConnectionTest {
 	@Test
 	public void deberiaRetornarElMailboxId() {
 		when(mailsystem.findMailbox(anyString())).thenReturn(new Mailbox("1", "", ""));
-		connection.findMailboxByAccumulatedKeys();
+		//connection.findMailboxByAccumulatedKeys();
 		assertEquals("1", connection.getCurrentMailboxId());
 	}
 	

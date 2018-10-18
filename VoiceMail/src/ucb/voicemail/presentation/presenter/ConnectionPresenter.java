@@ -2,6 +2,7 @@ package ucb.voicemail.presentation.presenter;
 
 import java.util.ArrayList;
 
+import ucb.voicemail.domain.Connection;
 import ucb.voicemail.domain.Mailbox;
 import ucb.voicemail.domain.Message;
 import ucb.voicemail.domain.Telephone;
@@ -10,9 +11,11 @@ import ucb.voicemail.domain.boundary.output.Presenter;
 public class ConnectionPresenter implements Presenter {
 	
 	private ArrayList<Telephone> telephones;
+	private Connection connection;
 	
-	public ConnectionPresenter() {
+	public ConnectionPresenter(Connection connection) {
 		telephones = new ArrayList<Telephone>();
+		this.connection = connection;
 	}
 	
 	public void addTelephone(Telephone telephone) {

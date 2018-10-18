@@ -9,7 +9,7 @@ public class Connection implements Subject {
 	public Connection(MailboxRepository mailboxRepository, MessageRepository messageRepository) {
 		this.mailboxRepository = mailboxRepository;
 		this.messageRepository = messageRepository;
-		this.presenter = new ConnectionPresenter();
+		this.presenter = new ConnectionPresenter(this);
 		resetConnection();
 	}
 

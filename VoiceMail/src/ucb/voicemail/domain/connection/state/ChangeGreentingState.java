@@ -15,7 +15,8 @@ public class ChangeGreentingState implements ConnectionState {
 	        mailboxRepository.setGreeting(connection.getCurrentRecording(), currentMailboxId);
 			connection.setCurrentRecording("");
 	        connection.setState(new MailboxMenuState());
-	        connection.notifyToAll(MAILBOX_MENU_TEXT);
+	        connection.displayMailboxMenu();
+	        //connection.notifyToAll(MAILBOX_MENU_TEXT);
 	    }
 	}
 
@@ -28,9 +29,4 @@ public class ChangeGreentingState implements ConnectionState {
 	public void hangup(Connection connection) {
 
 	}
-
-	private static final String MAILBOX_MENU_TEXT = 
-	         "Enter 1 to listen to your messages\n"
-	         + "Enter 2 to change your passcode\n"
-	         + "Enter 3 to change your greeting";
 }

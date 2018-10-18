@@ -14,10 +14,13 @@ public class ConnectedState implements ConnectionState {
 			if (currentMailbox != null)
 			{
 				connection.setState(new RecordingState());
-				connection.notifyToAll(currentMailbox.getGreeting());
+				connection.displayMailboxGreeting(currentMailbox);
+				//connection.notifyToAll(currentMailbox.getGreeting());
 			}
-			else
-				connection.notifyToAll("Incorrect mailbox number. Try again!");
+			else {
+				connection.displayMailboxMessageError();
+				//connection.notifyToAll("Incorrect mailbox number. Try again!");	
+			}
 			connection.setAccumulatedKeys("");
 		}
 		else

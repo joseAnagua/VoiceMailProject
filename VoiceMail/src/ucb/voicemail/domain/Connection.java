@@ -34,7 +34,8 @@ public class Connection implements Subject {
 		currentRecording = "";
 		accumulatedKeys = "";
 		connectionState = new ConnectedState();
-		notifyToAll(INITIAL_PROMPT);
+		this.displayInitialPrompt();
+		//notifyToAll(INITIAL_PROMPT);
 	}
 
 	public void setState(ConnectionState state) {
@@ -118,8 +119,6 @@ public class Connection implements Subject {
 	private String accumulatedKeys;
 	private ConnectionState connectionState;
 	private ArrayList<Telephone> telephones;
-
-	private static final String INITIAL_PROMPT = "Enter mailbox number followed by #";
 	
 	public void displayInitialPrompt() {
 		for (Telephone telephone : this.telephones) {

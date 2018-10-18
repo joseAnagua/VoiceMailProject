@@ -10,6 +10,7 @@ public class ConsoleTelephone implements Telephone {
 
 	public ConsoleTelephone(Scanner aScanner, Presenter presenter) {
 		scanner = aScanner;
+		this.presenter = presenter;
 	}
 
 	public void speak(String output) {

@@ -15,10 +15,13 @@ public class RecordingState implements ConnectionState {
 			if (currentMailbox.checkPasscode(connection.getAccumulatedKeys()))
 	        {
 				connection.setState(new MailboxMenuState());
-	            connection.notifyToAll(MAILBOX_MENU_TEXT);
+	            connection.displayMailboxMenu();
+				//connection.notifyToAll(MAILBOX_MENU_TEXT);
 	        }
-	        else
-	        	connection.notifyToAll("Incorrect passcode. Try again!");
+	        else {
+	        	connection.displaypPasscodeMessageError();
+	        	//connection.notifyToAll("Incorrect passcode. Try again!");
+	        }
 	        connection.setAccumulatedKeys("");
 	   }
 	   else
@@ -35,9 +38,4 @@ public class RecordingState implements ConnectionState {
 		MessageRepository messageRepository = connection.getMessageRepository();
 		messageRepository.addMessage(connection.getCurrentRecording(), connection.getCurrentMailboxId());
 	}
-
-	private static final String MAILBOX_MENU_TEXT = 
-	         "Enter 1 to listen to your messages\n"
-	         + "Enter 2 to change your passcode\n"
-	         + "Enter 3 to change your greeting";
 }

@@ -1,7 +1,6 @@
 package ucb.voicemail.domain;
 
 import ucb.voicemail.domain.boundary.output.Presenter;
-import ucb.voicemail.domain.connection.state.ConnectedState;
 import ucb.voicemail.presentation.presenter.ConnectionPresenter;
 
 public class Connection implements Subject {
@@ -33,7 +32,7 @@ public class Connection implements Subject {
 	private void resetConnection() {
 		currentRecording = "";
 		accumulatedKeys = "";
-		connectionState = new ConnectedState();
+		//connectionState = new ConnectedState();
 		this.getPresenter().displayInitialPrompt();
 	}
 

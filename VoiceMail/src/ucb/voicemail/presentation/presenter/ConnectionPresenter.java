@@ -7,6 +7,7 @@ import ucb.voicemail.domain.Mailbox;
 import ucb.voicemail.domain.Message;
 import ucb.voicemail.domain.Telephone;
 import ucb.voicemail.domain.boundary.output.Presenter;
+import ucb.voicemail.domain.connection.state.*;
 
 public class ConnectionPresenter implements Presenter {
 	
@@ -28,6 +29,7 @@ public class ConnectionPresenter implements Presenter {
 	
 	@Override
 	public void displayInitialPrompt() {
+		connection.setState(new ConnectedState());
 		for (Telephone telephone : this.telephones) {
 			telephone.getPresenter().displayInitialPrompt();
 		}
@@ -42,6 +44,7 @@ public class ConnectionPresenter implements Presenter {
 	
 	@Override
 	public void displayMailboxGreeting(Mailbox mailbox) {
+		connection.setState(new RecordingState());
 		for (Telephone telephone : this.telephones) {
 			telephone.getPresenter().displayMailboxGreeting(mailbox);
 		}
@@ -49,6 +52,7 @@ public class ConnectionPresenter implements Presenter {
 	
 	@Override
 	public void displayMailboxMenu() {
+		connection.setState(new MailboxMenuState());
 		for (Telephone telephone : this.telephones) {
 			telephone.getPresenter().displayMailboxMenu();
 		}
@@ -63,6 +67,7 @@ public class ConnectionPresenter implements Presenter {
 	
 	@Override
 	public void displayMessageMenu() {
+		connection.setState(new MessageMenuState());
 		for (Telephone telephone : this.telephones) {
 			telephone.getPresenter().displayMessageMenu();
 		}
@@ -77,6 +82,7 @@ public class ConnectionPresenter implements Presenter {
 	
 	@Override
 	public void displayChangePasscodeMessage() {
+		connection.setState(new ChangePasscodeState());
 		for (Telephone telephone : this.telephones) {
 			telephone.getPresenter().displayChangePasscodeMessage();
 		}
@@ -84,6 +90,7 @@ public class ConnectionPresenter implements Presenter {
 	
 	@Override
 	public void displayChangeGreetingMessage() {
+		connection.setState(new ChangeGreentingState());
 		for (Telephone telephone : this.telephones) {
 			telephone.getPresenter().displayChangeGreetingMessage();
 		}

@@ -13,7 +13,6 @@ public class ChangeGreentingState implements ConnectionState {
 			String currentMailboxId = connection.getCurrentMailboxId();
 			mailboxRepository.setGreeting(connection.getCurrentRecording(), currentMailboxId);
 			connection.setCurrentRecording("");
-			connection.setState(new MailboxMenuState());
 			connection.getPresenter().displayMailboxMenu();
 		}
 	}

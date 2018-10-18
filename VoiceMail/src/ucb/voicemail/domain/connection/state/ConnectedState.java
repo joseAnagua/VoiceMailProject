@@ -11,14 +11,14 @@ public class ConnectedState implements ConnectionState {
 		if (key.equals("#")) {
 			Mailbox currentMailbox = connection.findMailboxByAccumulatedKeys();
 			if (currentMailbox != null) {
-				connection.setState(new RecordingState());
 				connection.getPresenter().displayMailboxGreeting(currentMailbox);
 			} else {
 				connection.getPresenter().displayMailboxMessageError();
 			}
 			connection.setAccumulatedKeys("");
-		} else
+		} else {
 			connection.addAccumulatedKeys(key);
+		}
 	}
 
 	@Override

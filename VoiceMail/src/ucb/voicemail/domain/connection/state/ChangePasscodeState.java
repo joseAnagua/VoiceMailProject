@@ -12,7 +12,6 @@ public class ChangePasscodeState implements ConnectionState {
 			MailboxRepository mailboxRepository = connection.getMailboxRepository();
 			String currentMailboxId = connection.getCurrentMailboxId();
 			mailboxRepository.setPasscode(connection.getAccumulatedKeys(), currentMailboxId);
-			connection.setState(new MailboxMenuState());
 			connection.getPresenter().displayMailboxMenu();
 			connection.setAccumulatedKeys("");
 		} else

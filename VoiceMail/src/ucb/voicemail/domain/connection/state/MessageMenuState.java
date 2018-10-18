@@ -20,7 +20,6 @@ public class MessageMenuState implements ConnectionState {
 			messageRepository.removeCurrentMessage(connection.getCurrentMailboxId());
 			connection.getPresenter().displayMessageMenu();
 		} else if (key.equals("4")) {
-			connection.setState(new MailboxMenuState());
 			connection.getPresenter().displayMailboxMenu();
 		}
 	}

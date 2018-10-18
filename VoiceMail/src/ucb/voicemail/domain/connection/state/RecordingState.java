@@ -12,7 +12,6 @@ public class RecordingState implements ConnectionState {
 		if (key.equals("#")) {
 			Mailbox currentMailbox = connection.getMailboxRepository().findMailbox(connection.getCurrentMailboxId());
 			if (currentMailbox.checkPasscode(connection.getAccumulatedKeys())) {
-				connection.setState(new MailboxMenuState());
 				connection.getPresenter().displayMailboxMenu();
 			} else {
 				connection.getPresenter().displaypPasscodeMessageError();

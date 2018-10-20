@@ -6,8 +6,9 @@ public class ChangePasscodeState implements ConnectionState {
 	public void dial(String key, Connection connection) {
 		if (key.equals("#"))
 		{
-			Mailbox currentMailbox = connection.getCurrentMailbox();
-			currentMailbox.setPasscode(connection.getAccumulatedKeys());
+			MailboxRepository mailboxRepository = connection.getMailboxRepository();
+			String currentMailboxId = connection.getCurrentMailboxId();
+			mailboxRepository.setPasscode(connection.getAccumulatedKeys(), currentMailboxId);
 			connection.setState(new MailboxMenuState());
 			connection.notifyToAll(MAILBOX_MENU_TEXT);
 			connection.setAccumulatedKeys("");

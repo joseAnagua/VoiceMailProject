@@ -7,31 +7,44 @@ import org.junit.Before;
 import org.junit.Test;
 
 import ucb.voicemail.domain.Connection;
-import ucb.voicemail.domain.MailSystem;
+import ucb.voicemail.domain.ConnectionState;
+import ucb.voicemail.domain.ArrayMailboxRepository;
 
 public class ConnectionTest {
 	private Connection connection;
-	private MailSystem mailsystem;
-	
+	private ArrayMailboxRepository mailsystem;
+
 	@Before
-	public void init(){
-		this.mailsystem = mock(MailSystem.class);
-		this.connection = new Connection(this.mailsystem);
+	public void init() {
+		this.mailsystem = mock(ArrayMailboxRepository.class);
+		this.connection = new Connection(this.mailsystem, null);
 	}
-	
+
 	@Test
 	public void deberiaLlamarAlMetodoConnect() {
 		this.connection.dial("key to test");
 	}
-	
+
 	@Test
 	public void deberiaConcatenarElTextoACurrentRecording() {
 		this.connection.record("texto");
 	}
-	
+
 	@Test
 	public void noDeberiaAgregarMensajeACurrentMailbox() {
 		this.connection.hangup();
 	}
-	
+
+	@Test
+	public void deberiaGuardarGrabacion() {
+		this.connection.currentRecord("Guardar");
+		assertEquals("Guardar", connection.getCurrentRecording());
+	}
+
+	@Test
+	public void deberiaCambiarEstado() {
+		ConnectionState state = mock(ConnectionState.class);
+		this.connection.setState(state);
+		assertEquals(state, this.connection.getState());
+	}
 }

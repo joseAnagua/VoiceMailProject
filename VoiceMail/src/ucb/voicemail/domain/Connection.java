@@ -1,107 +1,118 @@
 package ucb.voicemail.domain;
+
 import java.util.ArrayList;
 
-public class Connection implements Subject
-{
-   public Connection(MailSystem s){
-      system = s;
-      this.telephones = new ArrayList<Telephone>();
-      resetConnection();
-   }
+public class Connection implements Subject {
+	public Connection(MailboxRepository mailboxRepository, MessageRepository messageRepository) {
+		this.mailboxRepository = mailboxRepository;
+		this.messageRepository = messageRepository;
+		this.telephones = new ArrayList<Telephone>();
+		resetConnection();
+	}
 
-   public void dial(String key){
-      connectionState.dial(key, this);
-   }
+	public void dial(String key) {
+		connectionState.dial(key, this);
+	}
 
-   public void record(String voice){ 		
-       connectionState.record(voice, this);   
-   }
-   
-   public void currentRecord(String voice) {
-	   currentRecording += voice;
-   }
-   
-   public void hangup()
-   {
-      connectionState.hangup(this);
-      resetConnection();
-   }
-   
-   public void addMessageCurrent() {
-	   currentMailbox.addMessage(new Message(currentRecording));
-   }
-   
-   private void resetConnection()
-   {
-      currentRecording = "";
-      accumulatedKeys = "";
-      connectionState = new ConnectedState();
-      notifyToAll(INITIAL_PROMPT);
-   }
-   
-   public void setState(ConnectionState state) {
-	   connectionState = state;
-   }
-   
-   public Mailbox findMailboxByAccumulatedKeys() {
-	   return currentMailbox = system.findMailbox(accumulatedKeys);
-   }
+	public void record(String voice) {
+		connectionState.record(voice, this);
+	}
 
-   public void setAccumulatedKeys(String text) {
-	   accumulatedKeys = text;
-   }
-   
-   public void setCurrentRecording(String text) {
-	   currentRecording = text;
-   }
-   
-   public void addAccumulatedKeys(String text) {
-	   accumulatedKeys += text;
-   }
-   
-   public Mailbox getCurrentMailbox() {
-	   return currentMailbox;
-   }
+	public void currentRecord(String voice) {
+		currentRecording += voice;
+	}
 
-   public String getAccumulatedKeys() {
-	   return accumulatedKeys;
-   }
+	public void hangup() {
+		connectionState.hangup(this);
+		resetConnection();
+	}
 
-   public String getCurrentRecording() {
-	   return currentRecording;
-   }
-   
-   /*===================================================================
-     Metodos [add - delete - notifyObserver]
-     ===================================================================*/
-   @Override 
-   public void addTelephone(Telephone telephone) {
-	   this.telephones.add(telephone);
-   }
-   
-   @Override
-   public void deleteTelephone(Telephone telephone) {
-	   this.telephones.remove(telephone);
-   }
-   
-   @Override
-   public void notifyToAll(String output) {
-	   for(Telephone telephone : this.telephones) {
-		   telephone.updateInterface(output);
-	   }
-   }
-   
-   public void start() {
-	   this.resetConnection();
-   }  
-   
-   private MailSystem system;
-   private Mailbox currentMailbox;
-   private String currentRecording;
-   private String accumulatedKeys;
-   private ConnectionState connectionState;
-   private ArrayList<Telephone> telephones;
+	private void resetConnection() {
+		currentRecording = "";
+		accumulatedKeys = "";
+		connectionState = new ConnectedState();
+		notifyToAll(INITIAL_PROMPT);
+	}
 
-   private static final String INITIAL_PROMPT = 
-         "Enter mailbox number followed by #";  
+	public void setState(ConnectionState state) {
+		connectionState = state;
+	}
+	
+	public ConnectionState getState() {
+		return connectionState;
+	}
+	
+	public Mailbox findMailboxByAccumulatedKeys() {
+		Mailbox currentMailbox = mailboxRepository.findMailbox(accumulatedKeys);
+		id_current_mailbox = currentMailbox.getExt();
+		return currentMailbox;
+	}
+
+	public void setAccumulatedKeys(String text) {
+		accumulatedKeys = text;
+	}
+
+	public void setCurrentRecording(String text) {
+		currentRecording = text;
+	}
+
+	public void addAccumulatedKeys(String text) {
+		accumulatedKeys += text;
+	}
+
+	public String getCurrentMailboxId() {
+		return id_current_mailbox;
+	}
+
+	public String getAccumulatedKeys() {
+		return accumulatedKeys;
+	}
+
+	public String getCurrentRecording() {
+		return currentRecording;
+	}
+	
+	public MailboxRepository getMailboxRepository() {
+		return mailboxRepository;
+	}
+
+	public MessageRepository getMessageRepository() {
+		return messageRepository;
+	}
+
+	/*
+	 * =================================================================== Metodos
+	 * [add - delete - notifyObserver]
+	 * ===================================================================
+	 */
+	@Override
+	public void addTelephone(Telephone telephone) {
+		this.telephones.add(telephone);
+	}
+
+	@Override
+	public void deleteTelephone(Telephone telephone) {
+		this.telephones.remove(telephone);
+	}
+
+	@Override
+	public void notifyToAll(String output) {
+		for (Telephone telephone : this.telephones) {
+			telephone.updateInterface(output);
+		}
+	}
+
+	public void start() {
+		this.resetConnection();
+	}
+
+	private MailboxRepository mailboxRepository;
+	private MessageRepository messageRepository;
+	private String id_current_mailbox;
+	private String currentRecording;
+	private String accumulatedKeys;
+	private ConnectionState connectionState;
+	private ArrayList<Telephone> telephones;
+
+	private static final String INITIAL_PROMPT = "Enter mailbox number followed by #";
 }

@@ -6,9 +6,10 @@ public class ChangeGreentingState implements ConnectionState {
 	public void dial(String key, Connection connection) {
 		if (key.equals("#"))
 	    {
-			Mailbox currentMailbox = connection.getCurrentMailbox();
-			currentMailbox.setGreeting(connection.getCurrentRecording());
-	        connection.setCurrentRecording("");
+			MailboxRepository mailboxRepository = connection.getMailboxRepository();
+			String currentMailboxId = connection.getCurrentMailboxId();
+	        mailboxRepository.setGreeting(connection.getCurrentRecording(), currentMailboxId);
+			connection.setCurrentRecording("");
 	        connection.setState(new MailboxMenuState());
 	        connection.notifyToAll(MAILBOX_MENU_TEXT);
 	    }

@@ -4,31 +4,26 @@ public class MessageMenuState implements ConnectionState {
 
 	@Override
 	public void dial(String key, Connection connection) {
-		  if (key.equals("1"))
-	      {
-	         String output = "";
-	         Message m = connection.getCurrentMailbox().getCurrentMessage();
-	         if (m == null) output += "No messages." + "\n";
-	         else output += m.getText() + "\n";
-	         output += MESSAGE_MENU_TEXT;
-	         //phone.speak(output);
-	         connection.notifyToAll(output);
-	      }
-	      else if (key.equals("2"))
-	      {
-	         connection.getCurrentMailbox().saveCurrentMessage();
-	         connection.notifyToAll(MESSAGE_MENU_TEXT);
-	      }
-	      else if (key.equals("3"))
-	      {
-	         connection.getCurrentMailbox().removeCurrentMessage();
-	         connection.notifyToAll(MESSAGE_MENU_TEXT);
-	      }
-	      else if (key.equals("4"))
-	      {
-	    	 connection.setState(new MailboxMenuState());
-	         connection.notifyToAll(MAILBOX_MENU_TEXT);
-	      }
+		MessageRepository messageRepository = connection.getMessageRepository();
+		if (key.equals("1")) {
+			String output = "";
+			Message message = messageRepository.getCurrentMessage(connection.getCurrentMailboxId());
+			if (message == null)
+				output += "No messages." + "\n";
+			else
+				output += message.getText() + "\n";
+			output += MESSAGE_MENU_TEXT;
+			connection.notifyToAll(output);
+		} else if (key.equals("2")) {
+			messageRepository.saveCurrentMessage(connection.getCurrentMailboxId());
+			connection.notifyToAll(MESSAGE_MENU_TEXT);
+		} else if (key.equals("3")) {
+			messageRepository.removeCurrentMessage(connection.getCurrentMailboxId());
+			connection.notifyToAll(MESSAGE_MENU_TEXT);
+		} else if (key.equals("4")) {
+			connection.setState(new MailboxMenuState());
+			connection.notifyToAll(MAILBOX_MENU_TEXT);
+		}
 	}
 
 	@Override

@@ -13,9 +13,9 @@ public class ConnectedState implements ConnectionState {
 		if (key.equals("#")) {
 			connection.setCurrentMailboxId(connection.getAccumulatedKeys());
 			connection.setAccumulatedKeys("");
+			String requestModel = connection.getCurrentMailboxId(); 
 			
 			GetGreetingMailboxUseCase interactor = new GetGreetingMailboxInteractor(connection.getPresenter(), connection.getMailboxRepository());
-			String requestModel = connection.getCurrentMailboxId();
 			interactor.getGreeting(requestModel);						
 		} else {
 			connection.addAccumulatedKeys(key);

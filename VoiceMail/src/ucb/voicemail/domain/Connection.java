@@ -32,7 +32,6 @@ public class Connection implements Subject {
 	private void resetConnection() {
 		currentRecording = "";
 		accumulatedKeys = "";
-		//connectionState = new ConnectedState();
 		this.getPresenter().displayInitialPrompt();
 	}
 

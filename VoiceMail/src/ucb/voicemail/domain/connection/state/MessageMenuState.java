@@ -15,20 +15,14 @@ public class MessageMenuState implements ConnectionState {
 
 	@Override
 	public void dial(String key, Connection connection) {
-		MessageRepository messageRepository = connection.getMessageRepository();
+		String ext = connection.getCurrentMailboxId();
 		if (key.equals("1")) {
-			String ext = connection.getCurrentMailboxId();
-			
 			GetCurrentMessageMailboxUseCase interactor = new GetCurrentMessageMailboxInteractor(connection.getPresenter(), connection.getMessageRepository());
 			interactor.getCurrentMessage(ext);
 		} else if (key.equals("2")) {
-			String ext = connection.getCurrentMailboxId();
-			
 			SaveCurrentMessageMailboxUseCase interactor = new SaveCurrentMessageMailboxInteractor(connection.getPresenter(), connection.getMessageRepository());
 			interactor.saveCurrentMessage(ext);
 		} else if (key.equals("3")) {
-			String ext = connection.getCurrentMailboxId();
-			
 			RemoveCurrentMessageMailboxUseCase interactor = new RemoveCurrentMessageMailboxInteractor(connection.getPresenter(), connection.getMessageRepository());
 			interactor.removeCurrentMessage(ext);
 		} else if (key.equals("4")) {

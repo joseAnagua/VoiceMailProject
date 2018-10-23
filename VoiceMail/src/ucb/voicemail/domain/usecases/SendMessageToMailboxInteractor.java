@@ -16,7 +16,8 @@ public class SendMessageToMailboxInteractor implements SendMessageToMailboxUseCa
 	
 	@Override
 	public void sendMessageToMailbox(String ext, String message) {
-		
+		repository.addMessage(message, ext);
+		presenter.displayInitialPrompt();
 	}
 
 }

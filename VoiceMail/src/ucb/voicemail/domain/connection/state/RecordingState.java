@@ -4,6 +4,8 @@ import ucb.voicemail.domain.Connection;
 import ucb.voicemail.domain.ConnectionState;
 import ucb.voicemail.domain.Mailbox;
 import ucb.voicemail.domain.MessageRepository;
+import ucb.voicemail.domain.boundary.input.SendMessageToMailboxUseCase;
+import ucb.voicemail.domain.usecases.SendMessageToMailboxInteractor;
 
 public class RecordingState implements ConnectionState {
 
@@ -28,7 +30,10 @@ public class RecordingState implements ConnectionState {
 
 	@Override
 	public void hangup(Connection connection) {
-		MessageRepository messageRepository = connection.getMessageRepository();
-		messageRepository.addMessage(connection.getCurrentRecording(), connection.getCurrentMailboxId());
+		String message = connection.getCurrentRecording();
+		String ext = connection.getCurrentMailboxId();
+		
+		SendMessageToMailboxUseCase interactor = new SendMessageToMailboxInteractor(connection.getPresenter(), connection.getMessageRepository());
+		interactor.sendMessageToMailbox(ext, message);
 	}
 }

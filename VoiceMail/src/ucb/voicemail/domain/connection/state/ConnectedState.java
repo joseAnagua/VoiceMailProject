@@ -3,6 +3,7 @@ package ucb.voicemail.domain.connection.state;
 import ucb.voicemail.domain.Connection;
 import ucb.voicemail.domain.ConnectionState;
 import ucb.voicemail.domain.Mailbox;
+import ucb.voicemail.domain.boundary.input.GetGreetingMailboxUseCase;
 import ucb.voicemail.domain.usecases.GetGreetingMailboxInteractor;
 
 public class ConnectedState implements ConnectionState {
@@ -13,7 +14,7 @@ public class ConnectedState implements ConnectionState {
 			connection.setCurrentMailboxId(connection.getAccumulatedKeys());
 			connection.setAccumulatedKeys("");
 			
-			GetGreetingMailboxInteractor interactor = new GetGreetingMailboxInteractor(connection.getPresenter(), connection.getMailboxRepository());
+			GetGreetingMailboxUseCase interactor = new GetGreetingMailboxInteractor(connection.getPresenter(), connection.getMailboxRepository());
 			String requestModel = connection.getCurrentMailboxId();
 			interactor.getGreeting(requestModel);						
 		} else {

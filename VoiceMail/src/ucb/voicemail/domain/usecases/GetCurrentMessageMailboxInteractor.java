@@ -18,7 +18,17 @@ public class GetCurrentMessageMailboxInteractor implements GetCurrentMessageMail
 	@Override
 	public void getCurrentMessage(String ext) {
 		Message currentMessage = repository.getCurrentMessage(ext);
-		presenter.displayCurrentMessage(currentMessage);
+		
+		String responseModel;
+		
+		if(currentMessage != null) {
+			responseModel = currentMessage.getText();
+		}
+		else {
+			responseModel = null;
+		}
+		
+		presenter.displayCurrentMessage(responseModel);
 	}
 
 }

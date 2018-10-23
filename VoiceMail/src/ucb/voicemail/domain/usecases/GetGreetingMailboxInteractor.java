@@ -19,7 +19,10 @@ public class GetGreetingMailboxInteractor implements GetGreetingMailboxUseCase {
 	public void getGreeting(String ext) {
 		Mailbox mailbox = repository.findMailbox(ext);
 		if(mailbox != null) {
-			presenter.displayMailboxGreeting(mailbox);
+			
+			String responseModel = mailbox.getGreeting();
+			
+			presenter.displayMailboxGreeting(responseModel);
 		}
 		else {
 			presenter.displayMailboxMessageError();

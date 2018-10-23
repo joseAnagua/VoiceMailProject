@@ -6,11 +6,11 @@ import ucb.voicemail.domain.Message;
 public interface Presenter {
 	void displayInitialPrompt();
 	void displayMailboxMessageError();
-	void displayMailboxGreeting(Mailbox mailbox);
+	void displayMailboxGreeting(String greeting);
 	void displayMailboxMenu();
 	void displaypPasscodeMessageError();
 	void displayMessageMenu();
-	void displayCurrentMessage(Message message);
+	void displayCurrentMessage(String message);
 	void displayChangePasscodeMessage();
 	void displayChangeGreetingMessage();
 }

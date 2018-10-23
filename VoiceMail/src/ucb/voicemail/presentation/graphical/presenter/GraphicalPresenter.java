@@ -39,8 +39,8 @@ public class GraphicalPresenter implements Presenter {
 	}
 
 	@Override
-	public void displayMailboxGreeting(Mailbox mailbox) {
-		String viewModel = mailbox.getGreeting();
+	public void displayMailboxGreeting(String greeting) {
+		String viewModel = greeting;
 		view.display(viewModel);
 	}
 
@@ -60,10 +60,10 @@ public class GraphicalPresenter implements Presenter {
 	}
 
 	@Override
-	public void displayCurrentMessage(Message message) {
+	public void displayCurrentMessage(String message) {
 		String viewModel;
 		if(message != null) {
-			viewModel = message.getText() + "\n";
+			viewModel = message + "\n";
 		}
 		else {
 			viewModel = "No messages." + "\n";

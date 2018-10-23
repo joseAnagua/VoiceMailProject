@@ -43,10 +43,10 @@ public class ConnectionPresenter implements Presenter {
 	}
 	
 	@Override
-	public void displayMailboxGreeting(Mailbox mailbox) {
+	public void displayMailboxGreeting(String greeting) {
 		connection.setState(new RecordingState());
 		for (Telephone telephone : this.telephones) {
-			telephone.getPresenter().displayMailboxGreeting(mailbox);
+			telephone.getPresenter().displayMailboxGreeting(greeting);
 		}
 	}
 	
@@ -74,7 +74,7 @@ public class ConnectionPresenter implements Presenter {
 	}
 	
 	@Override
-	public void displayCurrentMessage(Message message) {
+	public void displayCurrentMessage(String message) {
 		for (Telephone telephone : this.telephones) {
 			telephone.getPresenter().displayCurrentMessage(message);
 		}

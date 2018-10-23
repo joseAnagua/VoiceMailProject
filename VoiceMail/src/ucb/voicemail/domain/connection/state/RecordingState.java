@@ -4,7 +4,9 @@ import ucb.voicemail.domain.Connection;
 import ucb.voicemail.domain.ConnectionState;
 import ucb.voicemail.domain.Mailbox;
 import ucb.voicemail.domain.MessageRepository;
+import ucb.voicemail.domain.boundary.input.LoginMailboxUseCase;
 import ucb.voicemail.domain.boundary.input.SendMessageToMailboxUseCase;
+import ucb.voicemail.domain.usecases.LoginMailboxInteractor;
 import ucb.voicemail.domain.usecases.SendMessageToMailboxInteractor;
 
 public class RecordingState implements ConnectionState {
@@ -12,12 +14,12 @@ public class RecordingState implements ConnectionState {
 	@Override
 	public void dial(String key, Connection connection) {
 		if (key.equals("#")) {
-			Mailbox currentMailbox = connection.getMailboxRepository().findMailbox(connection.getCurrentMailboxId());
-			if (currentMailbox.checkPasscode(connection.getAccumulatedKeys())) {
-				connection.getPresenter().displayMailboxMenu();
-			} else {
-				connection.getPresenter().displaypPasscodeMessageError();
-			}
+			String ext = connection.getCurrentMailboxId();
+			String passcode = connection.getAccumulatedKeys();
+			
+			LoginMailboxUseCase interactor = new LoginMailboxInteractor(connection.getPresenter(), connection.getMailboxRepository());
+			interactor.loginMailbox(ext, passcode);
+			
 			connection.setAccumulatedKeys("");
 		} else
 			connection.addAccumulatedKeys(key);
